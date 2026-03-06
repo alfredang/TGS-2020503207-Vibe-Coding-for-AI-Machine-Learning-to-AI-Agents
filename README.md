@@ -1,6 +1,10 @@
 # Vibe Coding for AI: Machine Learning to AI Agents
 
-A 2-day hands-on course covering deep learning with Keras 3 (PyTorch backend), from CNNs and RNNs to building AI Agents. All labs use a "vibe coding" workflow where you collaborate with AI assistants to build, debug, and iterate on ML code.
+A 2-day hands-on WSQ course covering deep learning with Keras 3 (PyTorch backend), from CNNs and RNNs to building AI Agents. All labs use a "vibe coding" workflow where you collaborate with AI assistants to build, debug, and iterate on ML code.
+
+**Course Page:** [Tertiary Courses — WSQ Vibe Coding for AI: Machine Learning to AI Agents](https://www.tertiarycourses.com.sg/wsq-vibe-coding-for-ai-machine-learning-to-ai-agents.html)
+
+**Apply via SkillsFuture:** [MySkillsFuture Course Directory (TGS-2020503207)](https://www.myskillsfuture.gov.sg/content/portal/en/training-exchange/course-directory/course-detail.html?courseReferenceNumber=TGS-2020503207)
 
 ## Prerequisites
 

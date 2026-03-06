@@ -1,5 +1,13 @@
 # Lab 1: Functional API Basics
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-functional-api-basics/lab-1-functional-api-basics.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-functional-api-basics/lab-1-functional-api-basics-gradio.ipynb)
+
 ## Overview
 
 This lab introduces the Keras Functional API as a flexible alternative to the Sequential API. You will learn how to build complex model architectures that go beyond simple layer stacking, including models with branching and merging paths.

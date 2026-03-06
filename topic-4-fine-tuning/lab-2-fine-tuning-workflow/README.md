@@ -1,5 +1,13 @@
 # Lab 2: Fine-Tuning Workflow
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-2-fine-tuning-workflow/lab-2-fine-tuning-workflow.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-2-fine-tuning-workflow/lab-2-fine-tuning-workflow-gradio.ipynb)
+
 ## Overview
 
 This lab extends the feature extraction approach from Lab 1 by introducing a complete fine-tuning workflow. After training a classification head on frozen features, you will selectively unfreeze top layers of the base model and continue training with a very low learning rate. This allows the pre-trained features to adapt to your specific dataset while avoiding catastrophic forgetting.

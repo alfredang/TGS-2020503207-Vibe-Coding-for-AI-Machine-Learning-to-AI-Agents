@@ -1,5 +1,13 @@
 # Lab 3: Before/After Comparison
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-2-solving-overfitting/lab-3-before-after-comparison/lab-3-before-after-comparison.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-2-solving-overfitting/lab-3-before-after-comparison/lab-3-before-after-comparison-gradio.ipynb)
+
 ## Objective
 
 Conduct a systematic comparison of multiple model variants to quantify the impact of different regularization strategies, visualize results side-by-side, and build an interactive prediction tool.

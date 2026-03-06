@@ -1,5 +1,13 @@
 # Lab 4: AI Agent Chatbot
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-4-ai-agent-chatbot/lab-4-ai-agent-chatbot.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-4-ai-agent-chatbot/lab-4-ai-agent-chatbot-gradio.ipynb)
+
 ## Overview
 
 This lab brings together deep learning and software engineering to build an AI Agent Chatbot. The agent follows a perceive-reason-act architecture, using a trained sentiment analysis model as one of its tools alongside other utility functions.

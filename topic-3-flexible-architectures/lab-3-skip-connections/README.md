@@ -1,5 +1,13 @@
 # Lab 3: Skip Connections / Residual Blocks
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-3-skip-connections/lab-3-skip-connections.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-3-skip-connections/lab-3-skip-connections-gradio.ipynb)
+
 ## Overview
 
 This lab explores skip connections and residual blocks, the key innovation behind ResNet architectures. You will learn why deep networks suffer from the vanishing gradient problem and how residual connections solve it, then build a mini-ResNet from scratch.

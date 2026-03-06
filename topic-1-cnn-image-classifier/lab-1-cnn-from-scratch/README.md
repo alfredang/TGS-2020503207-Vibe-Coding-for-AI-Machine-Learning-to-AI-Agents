@@ -1,5 +1,13 @@
 # Lab 1: Build a CNN from Scratch
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-1-cnn-from-scratch/lab-1-cnn-from-scratch.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-1-cnn-from-scratch/lab-1-cnn-from-scratch-gradio.ipynb)
+
 ## Overview
 
 In this lab, you will build your first Convolutional Neural Network (CNN) using the Keras 3 Sequential API with a PyTorch backend. You will train the model on the MNIST handwritten digit dataset and evaluate its performance. This lab introduces the vibe-coding approach -- using AI assistants like Claude to accelerate your ML workflow.

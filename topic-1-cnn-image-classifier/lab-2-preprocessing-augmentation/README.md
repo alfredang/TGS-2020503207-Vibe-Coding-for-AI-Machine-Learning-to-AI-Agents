@@ -1,5 +1,13 @@
 # Lab 2: Image Preprocessing & Augmentation Layers
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-2-preprocessing-augmentation/lab-2-preprocessing-augmentation.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-2-preprocessing-augmentation/lab-2-preprocessing-augmentation-gradio.ipynb)
+
 ## Overview
 
 In this lab, you will learn how to build preprocessing and data augmentation pipelines using Keras 3 built-in layers. You will work with the CIFAR-10 dataset and observe how augmentation improves model generalization. The backend is PyTorch.

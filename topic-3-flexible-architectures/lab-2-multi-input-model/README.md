@@ -1,5 +1,13 @@
 # Lab 2: Multi-Input Model
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-2-multi-input-model/lab-2-multi-input-model.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-2-multi-input-model/lab-2-multi-input-model-gradio.ipynb)
+
 ## Overview
 
 This lab demonstrates how to build models that accept multiple different inputs using the Keras Functional API. You will create a model that combines image data with synthetic metadata to improve classification accuracy on CIFAR-10.

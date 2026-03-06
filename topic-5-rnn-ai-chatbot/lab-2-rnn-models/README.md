@@ -1,5 +1,13 @@
 # Lab 2: Build RNN Models (LSTM, GRU, Bidirectional)
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-2-rnn-models/lab-2-rnn-models.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-2-rnn-models/lab-2-rnn-models-gradio.ipynb)
+
 ## Overview
 
 This lab explores Recurrent Neural Network architectures for sequence modeling. You will build and compare four different RNN variants -- LSTM, GRU, Bidirectional LSTM, and Stacked LSTM -- on the IMDB sentiment classification task.

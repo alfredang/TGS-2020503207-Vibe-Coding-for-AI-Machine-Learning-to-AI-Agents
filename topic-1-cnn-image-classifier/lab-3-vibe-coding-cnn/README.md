@@ -1,5 +1,13 @@
 # Lab 3: Train Image Recognition CNN with Vibe-Coding
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-3-vibe-coding-cnn/lab-3-vibe-coding-cnn.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-3-vibe-coding-cnn/lab-3-vibe-coding-cnn-gradio.ipynb)
+
 ## Overview
 
 This lab walks you through building a CIFAR-10 image classifier using a **vibe-coding workflow** -- an iterative approach where you prompt an AI assistant, generate code, test results, and refine until you reach your target performance. The notebook uses **Keras 3 with the PyTorch backend**.

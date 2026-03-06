@@ -1,5 +1,13 @@
 # Lab 1: TextVectorization and Embedding Layers
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-1-text-vectorization-embedding/lab-1-text-vectorization-embedding.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-1-text-vectorization-embedding/lab-1-text-vectorization-embedding-gradio.ipynb)
+
 ## Overview
 
 This lab introduces two fundamental NLP building blocks in Keras: **TextVectorization** and **Embedding** layers. You will learn how raw text is converted into numerical sequences and then mapped to dense vector representations that neural networks can process.

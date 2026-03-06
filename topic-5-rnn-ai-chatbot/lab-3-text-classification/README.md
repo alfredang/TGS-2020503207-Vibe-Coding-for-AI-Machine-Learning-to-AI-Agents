@@ -1,5 +1,13 @@
 # Lab 3: Text Classification with RNN
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-3-text-classification/lab-3-text-classification.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-3-text-classification/lab-3-text-classification-gradio.ipynb)
+
 ## Overview
 
 This lab builds a complete, end-to-end text classification pipeline that accepts raw text strings as input. By embedding the `TextVectorization` layer directly inside the model, the final saved model can be deployed without any external preprocessing.

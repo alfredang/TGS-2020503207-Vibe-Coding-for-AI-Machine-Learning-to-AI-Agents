@@ -1,5 +1,13 @@
 # Lab 1: Feature Extraction with Pre-trained Models
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-feature-extraction/lab-1-feature-extraction.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-feature-extraction/lab-1-feature-extraction-gradio.ipynb)
+
 ## Overview
 
 In this lab, you will learn how to use pre-trained models as feature extractors for image classification. Instead of training a deep neural network from scratch, you will leverage MobileNetV2 (pre-trained on ImageNet) and only train a small classification head on top. This technique is called **feature extraction** and is one of the most common forms of transfer learning.

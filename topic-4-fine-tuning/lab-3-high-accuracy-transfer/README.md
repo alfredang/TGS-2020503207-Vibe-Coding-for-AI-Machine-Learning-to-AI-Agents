@@ -1,5 +1,13 @@
 # Lab 3: High-Accuracy Transfer Learning Model
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-3-high-accuracy-transfer/lab-3-high-accuracy-transfer.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-3-high-accuracy-transfer/lab-3-high-accuracy-transfer-gradio.ipynb)
+
 ## Overview
 
 This lab builds a complete, production-quality transfer learning pipeline using MobileNetV2 on the full CIFAR-10 dataset (10 classes). You will incorporate data augmentation, a structured training pipeline, comprehensive evaluation metrics, and model saving. The goal is to achieve the highest possible accuracy through best practices in transfer learning.

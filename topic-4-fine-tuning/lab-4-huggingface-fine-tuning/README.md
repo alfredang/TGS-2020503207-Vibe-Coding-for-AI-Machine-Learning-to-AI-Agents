@@ -1,5 +1,13 @@
 # Lab 4: Fine-Tuning with HuggingFace Models & Datasets
 
+
+## Open in Google Colab
+
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-4-huggingface-fine-tuning/lab-4-huggingface-fine-tuning.ipynb)
+
+
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-4-huggingface-fine-tuning/lab-4-huggingface-fine-tuning-gradio.ipynb)
+
 ## Overview
 
 This lab introduces the HuggingFace ecosystem for fine-tuning pre-trained models. You will use the HuggingFace `datasets` library to load the Beans dataset, the `transformers` library to load a pre-trained Vision Transformer (ViT), and the `Trainer` API to fine-tune the model for bean leaf disease classification. This lab uses PyTorch directly via transformers (not Keras).

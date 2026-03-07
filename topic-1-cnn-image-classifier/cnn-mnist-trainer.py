@@ -64,8 +64,31 @@ def build_cnn(activation="relu"):
     return model
 
 
-# ── 4. Training Function ────────────────────────────────────────────────────
-def train_and_evaluate(optimizer_name, activation, learning_rate, epochs, batch_size):
+# ── 4. Gradio Progress Callback ──────────────────────────────────────────────
+class GradioProgressCallback(keras.callbacks.Callback):
+    """Keras callback that updates a Gradio progress bar each epoch."""
+
+    def __init__(self, progress, total_epochs):
+        super().__init__()
+        self.progress = progress
+        self.total_epochs = total_epochs
+
+    def on_epoch_end(self, epoch, logs=None):
+        logs = logs or {}
+        self.progress(
+            (epoch + 1) / self.total_epochs,
+            desc=(
+                f"Epoch {epoch + 1}/{self.total_epochs} — "
+                f"loss: {logs.get('loss', 0):.4f} | "
+                f"acc: {logs.get('accuracy', 0):.4f} | "
+                f"val_loss: {logs.get('val_loss', 0):.4f} | "
+                f"val_acc: {logs.get('val_accuracy', 0):.4f}"
+            ),
+        )
+
+
+# ── 5. Training Function ────────────────────────────────────────────────────
+def train_and_evaluate(optimizer_name, activation, learning_rate, epochs, batch_size, progress=gr.Progress()):
     """Train CNN with chosen hyperparameters and return evaluation plots."""
     epochs = int(epochs)
     batch_size = int(batch_size)
@@ -92,21 +115,26 @@ def train_and_evaluate(optimizer_name, activation, learning_rate, epochs, batch_
         metrics=["accuracy"],
     )
 
-    # Train
+    # Train with progress bar
+    progress(0, desc="Starting training...")
+    progress_cb = GradioProgressCallback(progress, epochs)
+
     history = model.fit(
         x_train, y_train,
         epochs=epochs,
         batch_size=batch_size,
         validation_data=(x_val, y_val),
-        verbose=1,
+        callbacks=[progress_cb],
+        verbose=0,
     )
 
-    # ── 5. Evaluate ─────────────────────────────────────────────────────
+    # ── 6. Evaluate ─────────────────────────────────────────────────────
+    progress(1.0, desc="Evaluating on test set...")
     test_loss, test_acc = model.evaluate(x_test, y_test, verbose=0)
     h = history.history
     epochs_range = range(1, len(h["loss"]) + 1)
 
-    # ── 6. Plot accuracy and loss curves ────────────────────────────────
+    # ── 7. Plot accuracy and loss curves ────────────────────────────────
     fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5))
 
     ax1.plot(epochs_range, h["accuracy"], "b-", label="Training", linewidth=2)
@@ -131,7 +159,7 @@ def train_and_evaluate(optimizer_name, activation, learning_rate, epochs, batch_
     )
     plt.tight_layout()
 
-    # ── 7. Confusion matrix ─────────────────────────────────────────────
+    # ── 8. Confusion matrix ─────────────────────────────────────────────
     y_pred = np.argmax(model.predict(x_test, verbose=0), axis=1)
     cm = confusion_matrix(y_test, y_pred)
 
@@ -160,7 +188,7 @@ def train_and_evaluate(optimizer_name, activation, learning_rate, epochs, batch_
     return fig1, fig2, summary
 
 
-# ── 8. Gradio Interface ─────────────────────────────────────────────────────
+# ── 9. Gradio Interface ─────────────────────────────────────────────────────
 demo = gr.Interface(
     fn=train_and_evaluate,
     inputs=[

@@ -48,24 +48,24 @@ print(f"Test set:       {x_test.shape}")
 
 
 # ── 3. Build Model ──────────────────────────────────────────────────────────
-def build_cnn():
+def build_cnn(activation="relu"):
     """Build a CNN model for MNIST classification."""
     model = keras.Sequential([
         keras.layers.Input(shape=(28, 28, 1)),
-        keras.layers.Conv2D(32, (3, 3), activation="relu"),
+        keras.layers.Conv2D(32, (3, 3), activation=activation),
         keras.layers.MaxPooling2D((2, 2)),
-        keras.layers.Conv2D(64, (3, 3), activation="relu"),
+        keras.layers.Conv2D(64, (3, 3), activation=activation),
         keras.layers.MaxPooling2D((2, 2)),
-        keras.layers.Conv2D(64, (3, 3), activation="relu"),
+        keras.layers.Conv2D(64, (3, 3), activation=activation),
         keras.layers.Flatten(),
-        keras.layers.Dense(64, activation="relu"),
+        keras.layers.Dense(64, activation=activation),
         keras.layers.Dense(NUM_CLASSES, activation="softmax"),
     ])
     return model
 
 
 # ── 4. Training Function ────────────────────────────────────────────────────
-def train_and_evaluate(optimizer_name, learning_rate, epochs, batch_size):
+def train_and_evaluate(optimizer_name, activation, learning_rate, epochs, batch_size):
     """Train CNN with chosen hyperparameters and return evaluation plots."""
     epochs = int(epochs)
     batch_size = int(batch_size)
@@ -85,7 +85,7 @@ def train_and_evaluate(optimizer_name, learning_rate, epochs, batch_size):
         optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
 
     # Build and compile
-    model = build_cnn()
+    model = build_cnn(activation=activation)
     model.compile(
         optimizer=optimizer,
         loss="sparse_categorical_crossentropy",
@@ -126,7 +126,7 @@ def train_and_evaluate(optimizer_name, learning_rate, epochs, batch_size):
     ax2.grid(True, alpha=0.3)
 
     fig1.suptitle(
-        f"{optimizer_name} (lr={learning_rate}) | Test Acc: {test_acc:.4f} | Test Loss: {test_loss:.4f}",
+        f"{optimizer_name} | {activation} (lr={learning_rate}) | Test Acc: {test_acc:.4f} | Test Loss: {test_loss:.4f}",
         fontsize=13, fontweight="bold",
     )
     plt.tight_layout()
@@ -144,6 +144,7 @@ def train_and_evaluate(optimizer_name, learning_rate, epochs, batch_size):
     # Summary text
     summary = (
         f"Optimizer: {optimizer_name}\n"
+        f"Activation: {activation}\n"
         f"Learning Rate: {learning_rate}\n"
         f"Epochs: {epochs}\n"
         f"Batch Size: {batch_size}\n"
@@ -168,6 +169,11 @@ demo = gr.Interface(
             value="Adam",
             label="Optimizer",
         ),
+        gr.Dropdown(
+            choices=["relu", "sigmoid", "tanh", "leaky_relu", "elu", "swish"],
+            value="relu",
+            label="Activation Function",
+        ),
         gr.Slider(
             minimum=0.0001, maximum=0.1, value=0.001, step=0.0001,
             label="Learning Rate",
@@ -189,7 +195,7 @@ demo = gr.Interface(
     title="CNN MNIST Trainer",
     description=(
         "Train a Convolutional Neural Network on MNIST handwritten digits. "
-        "Choose an optimizer, adjust the learning rate, epochs, and batch size, "
+        "Choose an optimizer, activation function, learning rate, epochs, and batch size, "
         "then click Submit to train and see the results."
     ),
 )

@@ -1,12 +1,12 @@
-# Lab 3: Skip Connections / Residual Blocks
+# Lab 1: Skip Connections / Residual Blocks
 
 
 ## Open in Google Colab
 
-**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-3-skip-connections/lab-3-skip-connections.ipynb)
+**Standard (no Gradio):** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-skip-connections/lab-1-skip-connections.ipynb)
 
 
-**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-3-skip-connections/lab-3-skip-connections-gradio.ipynb)
+**With Gradio UI:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-skip-connections/lab-1-skip-connections-gradio.ipynb)
 
 ## Overview
 
@@ -46,18 +46,17 @@ x ──> Conv2D ──> BatchNorm ──> ReLU ──> Conv2D ──> BatchNorm
 
 - Python 3.13+
 - Keras 3 with PyTorch backend
-- Completion of Labs 1 and 2
 
 ## How to Run
 
-1. Open `lab-3-skip-connections.ipynb` in Google Colab or Jupyter
+1. Open `lab-1-skip-connections.ipynb` in Google Colab or Jupyter
 2. Run all cells sequentially
 3. Use the Gradio interface to classify images with the mini-ResNet
 
 ## File Structure
 
 ```
-lab-3-skip-connections/
+lab-1-skip-connections/
 ├── README.md
-└── lab-3-skip-connections.ipynb
+└── lab-1-skip-connections.ipynb
 ```

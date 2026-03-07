@@ -77,6 +77,8 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 1: Vibe Coding CNNs and AI Agent Image Classifier
 
+**CNN MNIST Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/cnn-mnist-trainer)
+
 | Lab | Standard | Gradio |
 |-----|----------|--------|
 | Lab 1: Build a CNN from Scratch (MNIST) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-1-cnn-from-scratch/lab-1-cnn-from-scratch.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-1-cnn-from-scratch/lab-1-cnn-from-scratch-gradio.ipynb) |

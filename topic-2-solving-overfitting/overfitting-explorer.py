@@ -1,9 +1,9 @@
 """
 Overfitting Explorer — Before/After Comparison with Gradio
 ==========================================================
-Train a baseline (overfitting) dense NN model and a regularized dense NN model
-on Fashion-MNIST side by side. Choose which regularization techniques to apply
-and see the difference in accuracy/loss curves.
+Train a baseline (overfitting) model and a regularized model on Fashion-MNIST
+side by side. Choose which regularization techniques to apply and see the
+difference in accuracy/loss curves.
 """
 
 # ── 1. Import Libraries ─────────────────────────────────────────────────────
@@ -29,21 +29,28 @@ CLASS_NAMES = [
     "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot",
 ]
 
-# Normalize to [0, 1] and flatten to (784,)
+# Normalize to [0, 1]
 x_train_all = x_train_raw.astype("float32") / 255.0
-x_test = x_test_raw.astype("float32") / 255.0
+x_test_all = x_test_raw.astype("float32") / 255.0
 
 # Train/val split
-x_train = x_train_all[:50000].reshape(-1, 784)
-x_val = x_train_all[50000:].reshape(-1, 784)
-x_test = x_test.reshape(-1, 784)
 y_train = y_train_raw[:50000]
 y_val = y_train_raw[50000:]
 y_test = y_test_raw
 
-print(f"Training set:   {x_train.shape}")
-print(f"Validation set: {x_val.shape}")
-print(f"Test set:       {x_test.shape}")
+# Flat versions for dense models
+x_train_flat = x_train_all[:50000].reshape(-1, 784)
+x_val_flat = x_train_all[50000:].reshape(-1, 784)
+x_test_flat = x_test_all.reshape(-1, 784)
+
+# Image versions for CNN/augmentation models
+x_train_img = x_train_all[:50000].reshape(-1, 28, 28, 1)
+x_val_img = x_train_all[50000:].reshape(-1, 28, 28, 1)
+x_test_img = x_test_all.reshape(-1, 28, 28, 1)
+
+print(f"Training set:   {x_train_flat.shape} (flat), {x_train_img.shape} (image)")
+print(f"Validation set: {x_val_flat.shape}")
+print(f"Test set:       {x_test_flat.shape}")
 
 
 # ── 3. Gradio Progress Callback ─────────────────────────────────────────────
@@ -88,22 +95,69 @@ def build_baseline():
     return model
 
 
-def build_regularized(use_dropout, use_batchnorm, use_l2,
-                       dropout_rate, l2_factor):
-    """Dense NN with selected regularization techniques."""
+def build_regularized(use_dropout, use_batchnorm, use_augmentation,
+                       use_l2, dropout_rate, l2_factor):
+    """Build a model with selected regularization techniques."""
     l2_reg = keras.regularizers.l2(l2_factor) if use_l2 else None
 
-    layers = [keras.layers.Input(shape=(784,))]
+    if use_augmentation:
+        # CNN model to support spatial data augmentation
+        layers = [keras.layers.Input(shape=(28, 28, 1))]
 
-    for units in LAYER_UNITS:
-        layers.append(keras.layers.Dense(units, kernel_regularizer=l2_reg))
+        # Data augmentation (only active during training)
+        layers.append(keras.layers.RandomFlip("horizontal"))
+        layers.append(keras.layers.RandomRotation(0.1))
+
+        # Conv block 1
+        layers.append(keras.layers.Conv2D(32, (3, 3), padding="same",
+                                          kernel_regularizer=l2_reg))
+        if use_batchnorm:
+            layers.append(keras.layers.BatchNormalization())
+        layers.append(keras.layers.Activation("relu"))
+        layers.append(keras.layers.MaxPooling2D((2, 2)))
+        if use_dropout:
+            layers.append(keras.layers.Dropout(dropout_rate * 0.5))
+
+        # Conv block 2
+        layers.append(keras.layers.Conv2D(64, (3, 3), padding="same",
+                                          kernel_regularizer=l2_reg))
+        if use_batchnorm:
+            layers.append(keras.layers.BatchNormalization())
+        layers.append(keras.layers.Activation("relu"))
+        layers.append(keras.layers.MaxPooling2D((2, 2)))
+        if use_dropout:
+            layers.append(keras.layers.Dropout(dropout_rate * 0.5))
+
+        # Dense head
+        layers.append(keras.layers.Flatten())
+        layers.append(keras.layers.Dense(256, kernel_regularizer=l2_reg))
         if use_batchnorm:
             layers.append(keras.layers.BatchNormalization())
         layers.append(keras.layers.Activation("relu"))
         if use_dropout:
             layers.append(keras.layers.Dropout(dropout_rate))
 
-    layers.append(keras.layers.Dense(10, activation="softmax"))
+        layers.append(keras.layers.Dense(128, kernel_regularizer=l2_reg))
+        if use_batchnorm:
+            layers.append(keras.layers.BatchNormalization())
+        layers.append(keras.layers.Activation("relu"))
+        if use_dropout:
+            layers.append(keras.layers.Dropout(dropout_rate * 0.8))
+
+        layers.append(keras.layers.Dense(10, activation="softmax"))
+    else:
+        # Dense model (same architecture as baseline)
+        layers = [keras.layers.Input(shape=(784,))]
+
+        for units in LAYER_UNITS:
+            layers.append(keras.layers.Dense(units, kernel_regularizer=l2_reg))
+            if use_batchnorm:
+                layers.append(keras.layers.BatchNormalization())
+            layers.append(keras.layers.Activation("relu"))
+            if use_dropout:
+                layers.append(keras.layers.Dropout(dropout_rate))
+
+        layers.append(keras.layers.Dense(10, activation="softmax"))
 
     model = keras.Sequential(layers)
     model.compile(
@@ -115,20 +169,21 @@ def build_regularized(use_dropout, use_batchnorm, use_l2,
 
 
 # ── 5. Training and Comparison ──────────────────────────────────────────────
-def train_and_compare(use_dropout, use_batchnorm, use_l2, use_early_stopping,
-                       dropout_rate, l2_factor, epochs, progress=gr.Progress()):
+def train_and_compare(use_dropout, use_batchnorm, use_augmentation,
+                       use_l2, use_early_stopping, dropout_rate, l2_factor,
+                       epochs, progress=gr.Progress()):
     """Train baseline and regularized models, return comparison plots."""
     epochs = int(epochs)
 
-    # ── Train baseline ──────────────────────────────────────────────────
+    # ── Train baseline (always dense, no regularization) ────────────────
     progress(0, desc="Training baseline model (no regularization)...")
     baseline_model = build_baseline()
     baseline_cb = ProgressCallback(progress, epochs, label="Baseline")
 
     baseline_history = baseline_model.fit(
-        x_train, y_train,
+        x_train_flat, y_train,
         epochs=epochs, batch_size=128,
-        validation_data=(x_val, y_val),
+        validation_data=(x_val_flat, y_val),
         callbacks=[baseline_cb],
         verbose=0,
     )
@@ -136,8 +191,14 @@ def train_and_compare(use_dropout, use_batchnorm, use_l2, use_early_stopping,
     # ── Train regularized ───────────────────────────────────────────────
     progress(0, desc="Training regularized model...")
     reg_model = build_regularized(
-        use_dropout, use_batchnorm, use_l2, dropout_rate, l2_factor,
+        use_dropout, use_batchnorm, use_augmentation,
+        use_l2, dropout_rate, l2_factor,
     )
+
+    # Choose data format based on augmentation
+    rx_train = x_train_img if use_augmentation else x_train_flat
+    rx_val = x_val_img if use_augmentation else x_val_flat
+    rx_test = x_test_img if use_augmentation else x_test_flat
 
     reg_callbacks = [ProgressCallback(progress, epochs, label="Regularized")]
     reg_epochs = epochs
@@ -150,17 +211,17 @@ def train_and_compare(use_dropout, use_batchnorm, use_l2, use_early_stopping,
         reg_epochs = epochs + 20  # allow extra room for early stopping
 
     reg_history = reg_model.fit(
-        x_train, y_train,
+        rx_train, y_train,
         epochs=reg_epochs, batch_size=128,
-        validation_data=(x_val, y_val),
+        validation_data=(rx_val, y_val),
         callbacks=reg_callbacks,
         verbose=0,
     )
 
     # ── Evaluate on test set ────────────────────────────────────────────
     progress(1.0, desc="Evaluating on test set...")
-    b_loss, b_acc = baseline_model.evaluate(x_test, y_test, verbose=0)
-    r_loss, r_acc = reg_model.evaluate(x_test, y_test, verbose=0)
+    b_loss, b_acc = baseline_model.evaluate(x_test_flat, y_test, verbose=0)
+    r_loss, r_acc = reg_model.evaluate(rx_test, y_test, verbose=0)
 
     bh = baseline_history.history
     rh = reg_history.history
@@ -230,6 +291,8 @@ def train_and_compare(use_dropout, use_batchnorm, use_l2, use_early_stopping,
         techniques.append(f"Dropout (rate={dropout_rate})")
     if use_batchnorm:
         techniques.append("Batch Normalization")
+    if use_augmentation:
+        techniques.append("Data Augmentation (RandomFlip + RandomRotation)")
     if use_l2:
         techniques.append(f"L2 Regularization (factor={l2_factor})")
     if use_early_stopping:
@@ -238,11 +301,17 @@ def train_and_compare(use_dropout, use_batchnorm, use_l2, use_early_stopping,
     if not techniques:
         techniques.append("None selected — regularized model is same as baseline")
 
+    # ── Architecture info ───────────────────────────────────────────────
+    if use_augmentation:
+        arch_info = "  Baseline:     Dense NN (784 → 512 → 512 → 256 → 256 → 128 → 10)\n  Regularized:  CNN + Dense (28x28x1 → Conv32 → Conv64 → 256 → 128 → 10)"
+    else:
+        arch_info = f"  Both models:  Dense NN (784 → {' → '.join(str(u) for u in LAYER_UNITS)} → 10)"
+
     # ── Summary text ────────────────────────────────────────────────────
     summary = (
         f"MODEL ARCHITECTURE\n"
         f"{'─' * 45}\n"
-        f"  Dense NN: 784 → {' → '.join(str(u) for u in LAYER_UNITS)} → 10\n"
+        f"{arch_info}\n"
         f"\n"
         f"TECHNIQUES APPLIED\n"
         f"{'─' * 45}\n"
@@ -279,6 +348,7 @@ demo = gr.Interface(
     inputs=[
         gr.Checkbox(value=True, label="Dropout"),
         gr.Checkbox(value=True, label="Batch Normalization"),
+        gr.Checkbox(value=False, label="Data Augmentation (switches to CNN)"),
         gr.Checkbox(value=True, label="L2 Regularization"),
         gr.Checkbox(value=True, label="Early Stopping"),
         gr.Slider(minimum=0.1, maximum=0.7, value=0.5, step=0.05,
@@ -296,9 +366,10 @@ demo = gr.Interface(
     flagging_mode="never",
     title="Overfitting Explorer — Fashion-MNIST",
     description=(
-        "Compare a baseline dense NN (no regularization) with a regularized dense NN "
-        "on Fashion-MNIST. Both models use the same architecture (784→512→512→256→256→128→10). "
-        "Toggle regularization techniques on/off to see how each one affects overfitting."
+        "Compare a baseline dense NN (no regularization) with a regularized model "
+        "on Fashion-MNIST. Toggle regularization techniques on/off to see how "
+        "each one affects overfitting. Enabling Data Augmentation switches the "
+        "regularized model to a CNN architecture to support spatial transforms."
     ),
 )
 

@@ -33,13 +33,13 @@ Create a single Python file for exploring overfitting solutions on Fashion-MNIST
 using Keras with PyTorch backend and Gradio.
 
 The app should:
-- Use a Dense (fully connected) neural network architecture (784→512→512→256→256→128→10)
+- Use a Dense (fully connected) neural network as the baseline (784→512→512→256→256→128→10)
 - Train TWO models side by side: a baseline (no regularization) and a regularized model
-- Both models use the same dense NN architecture so the comparison is fair
 - The baseline always trains without any regularization so users can see the "before"
 - Let users toggle these regularization techniques on/off via checkboxes:
   - Dropout (with adjustable dropout rate slider)
   - Batch Normalization
+  - Data Augmentation (RandomFlip + RandomRotation — switches to CNN architecture)
   - L2 Regularization (with adjustable L2 factor slider)
   - Early Stopping
 - Show a progress bar during training for both models
@@ -61,9 +61,9 @@ The app should:
 The AI will generate a Python file (e.g., `overfitting-explorer.py`) with:
 
 1. **Keras backend setup** -- `os.environ["KERAS_BACKEND"] = "torch"` before importing Keras
-2. **Fashion-MNIST data pipeline** -- download, normalize to [0,1], flatten to 784, train/val/test split
+2. **Fashion-MNIST data pipeline** -- download, normalize to [0,1], flat (784) and image (28x28x1) versions, train/val/test split
 3. **Baseline model** -- large dense network (784→512→512→256→256→128→10) with no regularization
-4. **Regularized model builder** -- same dense architecture but dynamically adds Dropout, BatchNorm, and L2 based on user selections
+4. **Regularized model builder** -- dynamically adds Dropout, BatchNorm, L2, and Data Augmentation based on user selections. When augmentation is enabled, switches to a CNN architecture
 5. **Side-by-side training** -- both models train and results are compared
 6. **Visualization** -- overlay and individual accuracy/loss curves
 7. **Gradio UI** -- checkboxes, sliders, plots, and summary text
@@ -82,7 +82,6 @@ Vibe coding is about iterating. Here are follow-up prompts you can use:
 | Add per-class accuracy | "Show per-class accuracy comparison between baseline and regularized" |
 | Change dataset | "Switch from Fashion-MNIST to CIFAR-10" |
 | Add sample predictions | "Show 10 sample predictions from both models side by side" |
-| Switch to CNN | "Replace the dense NN with a CNN architecture and add data augmentation" |
 
 ---
 
@@ -107,6 +106,7 @@ Open `http://127.0.0.1:7860` in your browser. Try these experiments:
 | No regularization | All checkboxes OFF | Regularized = baseline, large gap |
 | Dropout only | Dropout ON, rate=0.5 | Gap shrinks, training acc drops |
 | BatchNorm only | BatchNorm ON | Faster convergence, slight regularization |
+| Augmentation only | Augmentation ON | Switches to CNN, better generalization |
 | L2 only | L2 ON, factor=0.001 | Weights stay small, mild gap reduction |
 | Early Stopping only | Early Stopping ON | Training halts before overfitting worsens |
 | All combined | Everything ON | Smallest gap, best generalization |
@@ -202,8 +202,7 @@ This takes 2-5 minutes. Visit your Space URL to see it live.
 ## Key Takeaways
 
 1. **Before/after comparison** is the best way to understand regularization -- seeing both models trained together makes the impact clear
-2. **Using the same architecture** for both models ensures a fair comparison -- only the regularization differs
-3. **Each technique targets overfitting differently** -- Dropout prevents co-adaptation, BatchNorm stabilizes training, L2 penalizes large weights, Early Stopping halts before overfitting
+2. **Each technique targets overfitting differently** -- Dropout prevents co-adaptation, BatchNorm stabilizes training, Data Augmentation increases effective training data, L2 penalizes large weights, Early Stopping halts before overfitting
 4. **Combining techniques** usually gives the best results -- they complement each other
 5. **The overfitting gap** (train accuracy - val accuracy) is the key metric to watch, not just accuracy
 6. **Vibe coding** lets you build complex ML comparison tools by describing what you want and iterating

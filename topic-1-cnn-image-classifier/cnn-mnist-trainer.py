@@ -220,6 +220,7 @@ demo = gr.Interface(
         gr.Plot(label="Confusion Matrix"),
         gr.Textbox(label="Training Summary", lines=12),
     ],
+    flagging_mode="never",
     title="CNN MNIST Trainer",
     description=(
         "Train a Convolutional Neural Network on MNIST handwritten digits. "

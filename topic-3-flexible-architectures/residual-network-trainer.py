@@ -15,32 +15,34 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from datasets import load_dataset
 import gradio as gr
 
 print(f"Keras version: {keras.__version__}")
 print(f"Backend: {keras.backend.backend()}")
 
 
-# ── 2. Download and Prepare CIFAR-10 ──────────────────────────────────────
-(x_train_raw, y_train_raw), (x_test_raw, y_test_raw) = keras.datasets.cifar10.load_data()
+# ── 2. Download and Prepare CIFAR-10 from Hugging Face ────────────────────
+ds = load_dataset("cifar10")
 
-CLASS_NAMES = [
-    "airplane", "automobile", "bird", "cat", "deer",
-    "dog", "frog", "horse", "ship", "truck",
-]
+CLASS_NAMES = ds["train"].features["label"].names
 
-# Normalize to [0, 1]
-x_train_all = x_train_raw.astype("float32") / 255.0
-x_test = x_test_raw.astype("float32") / 255.0
+def ds_to_arrays(split):
+    """Convert a HuggingFace dataset split to numpy arrays."""
+    images = np.array([np.array(img) for img in split["img"]], dtype="float32") / 255.0
+    labels = np.array(split["label"])
+    return images, labels
+
+x_train_all, y_train_all = ds_to_arrays(ds["train"])
+x_test, y_test = ds_to_arrays(ds["test"])
 
 # Train/val split
 x_train = x_train_all[:45000]
-y_train = y_train_raw[:45000]
+y_train = y_train_all[:45000]
 x_val = x_train_all[45000:]
-y_val = y_train_raw[45000:]
-y_test = y_test_raw
+y_val = y_train_all[45000:]
 
-NUM_CLASSES = 10
+NUM_CLASSES = len(CLASS_NAMES)
 
 print(f"Training set:   {x_train.shape}")
 print(f"Validation set: {x_val.shape}")

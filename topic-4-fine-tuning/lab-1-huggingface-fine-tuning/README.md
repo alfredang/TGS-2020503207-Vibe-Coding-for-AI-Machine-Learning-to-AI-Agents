@@ -1,9 +1,9 @@
-# Lab 4: Fine-Tuning with HuggingFace Models & Datasets
+# Lab 1: Fine-Tuning with HuggingFace Models & Datasets
 
 
 ## Open in Google Colab
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-4-huggingface-fine-tuning/lab-4-huggingface-fine-tuning.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-huggingface-fine-tuning/lab-1-huggingface-fine-tuning.ipynb)
 
 ## Overview
 
@@ -64,7 +64,7 @@ This lab introduces the HuggingFace ecosystem for fine-tuning pre-trained models
 
 ## How to Run
 
-1. Open `lab-4-huggingface-fine-tuning.ipynb` in Google Colab or locally
+1. Open `lab-1-huggingface-fine-tuning.ipynb` in Google Colab or locally
 2. Run all cells sequentially
 3. The final section launches a Gradio interface for interactive testing
 

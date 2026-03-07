@@ -90,14 +90,11 @@ Click any badge below to open the notebook directly in Google Colab.
 |-----|---------------|
 | Lab 1: Skip Connections & Residual Blocks | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-skip-connections/lab-1-skip-connections.ipynb) |
 
-### Topic 4: Fine Tuning with Vibe Coding
+### Topic 4: HuggingFace Fine Tuning with Vibe Coding
 
 | Lab | Open in Colab |
 |-----|---------------|
-| Lab 1: Feature Extraction with Pre-trained Models | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-feature-extraction/lab-1-feature-extraction.ipynb) |
-| Lab 2: Fine-Tuning Workflow | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-2-fine-tuning-workflow/lab-2-fine-tuning-workflow.ipynb) |
-| Lab 3: High-Accuracy Transfer Learning | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-3-high-accuracy-transfer/lab-3-high-accuracy-transfer.ipynb) |
-| Lab 4: HuggingFace Fine-Tuning (ViT + Beans) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-4-huggingface-fine-tuning/lab-4-huggingface-fine-tuning.ipynb) |
+| Lab 1: HuggingFace Fine-Tuning (ViT + Beans) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-huggingface-fine-tuning/lab-1-huggingface-fine-tuning.ipynb) |
 
 ### Topic 5: Vibe Coding RNNs and AI Agent Chatbot
 

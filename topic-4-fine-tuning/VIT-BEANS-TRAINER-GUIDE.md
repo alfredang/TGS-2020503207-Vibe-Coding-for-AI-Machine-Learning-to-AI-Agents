@@ -9,13 +9,13 @@ This guide walks you through building an interactive Vision Transformer (ViT) fi
 Make sure you have the required dependencies installed:
 
 ```bash
-pip install torch torchvision transformers datasets scikit-learn gradio matplotlib numpy
+pip install torch torchvision transformers datasets accelerate scikit-learn gradio matplotlib numpy
 ```
 
 Or if using `uv`:
 
 ```bash
-uv pip install torch torchvision transformers datasets scikit-learn gradio matplotlib numpy
+uv pip install torch torchvision transformers datasets accelerate scikit-learn gradio matplotlib numpy
 ```
 
 ---
@@ -31,23 +31,39 @@ Create a single Python file for fine-tuning a pre-trained Vision Transformer
 (ViT) on the Beans leaf disease dataset using HuggingFace Transformers,
 Datasets, and Gradio.
 
-The app should:
-- Load the "beans" dataset from HuggingFace Hub
-- Use google/vit-base-patch16-224 as the pre-trained model
-- Use AutoImageProcessor for preprocessing
-- Use the HuggingFace Trainer API for fine-tuning
-- Let users adjust via Gradio:
-  - Learning rate slider
-  - Number of epochs slider
-  - Train batch size slider
-  - Eval batch size slider
-  - Warmup ratio slider
-  - Weight decay slider
-- Show a progress bar during training
-- Display training curves (accuracy and loss), confusion matrix,
-  and sample predictions with confidence scores
-- Show a training summary with model info, configuration, test accuracy,
-  and per-class accuracy
+Dataset:
+- Beans dataset from HuggingFace Hub: load_dataset("beans")
+- 3 classes: angular_leaf_spot, bean_rust, healthy
+- Pre-split into train, validation, and test sets
+
+Model:
+- google/vit-base-patch16-224 as the pre-trained model
+- Use AutoImageProcessor for preprocessing (resize, normalize)
+- Use AutoModelForImageClassification with ignore_mismatched_sizes=True
+- Create id2label and label2id mappings from the dataset
+
+Training:
+- Use the HuggingFace Trainer API with TrainingArguments
+- Custom collate_fn to stack pixel_values and labels into tensors
+- Custom compute_metrics function using sklearn accuracy_score
+- eval_strategy="epoch", save_strategy="epoch", load_best_model_at_end=True
+- Let users adjust via Gradio sliders:
+  - Learning rate (1e-6 to 1e-3, default 2e-5)
+  - Number of epochs (1-10, default 3)
+  - Train batch size (4-32, default 16)
+  - Eval batch size (4-32, default 16)
+  - Warmup ratio (0.0-0.3, default 0.1)
+  - Weight decay (0.0-0.3, default 0.01)
+
+Outputs — display all of the following:
+- Training curves: validation accuracy per epoch + training/validation loss
+- Confusion matrix on the test set using sklearn ConfusionMatrixDisplay
+- Sample predictions: 2x4 grid of test images with predicted vs true labels,
+  green for correct, red for incorrect, with confidence scores
+- Training summary text: model info, configuration, test accuracy, test loss,
+  train loss, and per-class accuracy
+
+- Show a Gradio progress bar during training
 - Remove the Gradio flag button
 ```
 
@@ -55,12 +71,14 @@ The app should:
 
 The AI will generate a Python file (e.g., `vit-beans-trainer.py`) with:
 
-1. **HuggingFace dataset loading** -- `load_dataset("beans")` for train/val/test splits
+1. **HuggingFace dataset loading** -- `load_dataset("beans")` with train/val/test splits
 2. **Image preprocessing** -- `AutoImageProcessor` matched to the ViT model
-3. **Pre-trained ViT model** -- loaded with `AutoModelForImageClassification`
-4. **HuggingFace Trainer API** -- `TrainingArguments` + `Trainer` for fine-tuning
-5. **Evaluation** -- accuracy, confusion matrix, sample predictions with confidence
-6. **Gradio UI** -- sliders for hyperparameters, plots and text output
+3. **Pre-trained ViT model** -- `AutoModelForImageClassification` with 3-class head
+4. **Custom collate and metrics** -- `collate_fn` for batching, `compute_metrics` for accuracy
+5. **HuggingFace Trainer API** -- `TrainingArguments` + `Trainer` for fine-tuning
+6. **Evaluation** -- training curves, confusion matrix, sample predictions with confidence
+7. **Training summary** -- model parameters, configuration, test accuracy, per-class accuracy
+8. **Gradio UI** -- sliders for all hyperparameters, 3 plot outputs + text summary
 
 ---
 
@@ -78,6 +96,7 @@ Vibe coding is about iterating. Here are follow-up prompts you can use:
 | Change dataset | "Add a dropdown to switch between beans, food101, and cifar10" |
 | Show training time | "Add training time per epoch and total training time to the summary" |
 | Export model | "Add a button to save the fine-tuned model as a .safetensors file" |
+| Push to Hub | "Add a button to push the fine-tuned model to HuggingFace Hub" |
 
 ---
 
@@ -150,6 +169,7 @@ requirements = b"""torch
 torchvision
 transformers
 datasets
+accelerate
 scikit-learn
 matplotlib
 numpy
@@ -179,7 +199,7 @@ huggingface-cli repo create vit-beans-trainer --type space --space-sdk gradio
 # Clone, copy files, push
 git clone https://huggingface.co/spaces/YOUR_USERNAME/vit-beans-trainer
 cp vit-beans-trainer.py vit-beans-trainer/app.py
-echo -e "torch\ntorchvision\ntransformers\ndatasets\nscikit-learn\nmatplotlib\nnumpy" > vit-beans-trainer/requirements.txt
+echo -e "torch\ntorchvision\ntransformers\ndatasets\naccelerate\nscikit-learn\nmatplotlib\nnumpy" > vit-beans-trainer/requirements.txt
 cd vit-beans-trainer
 git add . && git commit -m "Add ViT beans trainer" && git push
 ```

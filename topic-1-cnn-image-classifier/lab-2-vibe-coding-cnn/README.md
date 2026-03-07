@@ -37,31 +37,26 @@ Read through the overview of the prompt-generate-test-refine cycle. This is the 
 - Train for 10 epochs and observe the training/validation accuracy curves.
 - This baseline gives you a reference point to improve upon.
 
-### Step 3: Add Preprocessing and Augmentation
-
-- Add `Rescaling`, `RandomFlip`, `RandomRotation`, and `RandomZoom` layers directly into the model.
-- Retrain and compare curves against the baseline.
-- Data augmentation helps reduce overfitting and improves generalization.
-
-### Step 4: Vibe-Coding Iteration 1 -- Improve Architecture
+### Step 3: Vibe-Coding Iteration 1 -- Improve Architecture
 
 - Deepen the network: increase filters from 32 to 64 to 128.
 - Add `BatchNormalization` after each convolutional layer.
 - Replace `Flatten` with `GlobalAveragePooling2D` to reduce parameters.
-- Train and compare with previous iterations.
+- Add `Dropout` for regularisation.
+- Train and compare with the baseline.
 
-### Step 5: Vibe-Coding Iteration 2 -- Tune Hyperparameters
+### Step 4: Vibe-Coding Iteration 2 -- Tune Hyperparameters
 
 - Add callbacks: `EarlyStopping`, `ReduceLROnPlateau`, and `ModelCheckpoint`.
 - Train for up to 30 epochs with early stopping (patience=5).
 - The best model weights are saved automatically.
 
-### Step 6: Compare All Iterations
+### Step 5: Compare All Iterations
 
 - Build a summary table with validation accuracy for each iteration.
 - Plot all training curves on a single chart to visualize improvement.
 
-### Step 7: Save the Best Model
+### Step 6: Save the Best Model
 
 - Save the final model in `.keras` format.
 - Verify that the saved model loads correctly and produces predictions.

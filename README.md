@@ -1,6 +1,6 @@
 # Vibe Coding for AI: Machine Learning to AI Agents
 
-A 2-day hands-on WSQ course covering deep learning with Keras 3 (PyTorch backend), from CNNs and RNNs to building AI Agents. All labs use a "vibe coding" workflow where you collaborate with AI assistants to build, debug, and iterate on ML code.
+A 2-day hands-on WSQ course covering deep learning with Keras 3 (PyTorch backend), from CNNs to RAG AI Chatbots. All labs use a "vibe coding" workflow where you collaborate with AI assistants to build, debug, and iterate on ML code.
 
 **Course Page:** [Tertiary Courses — WSQ Vibe Coding for AI: Machine Learning to AI Agents](https://www.tertiarycourses.com.sg/wsq-vibe-coding-for-ai-machine-learning-to-ai-agents.html)
 
@@ -102,11 +102,10 @@ Click any badge below to open the notebook directly in Google Colab.
 |-----|---------------|
 | Lab 1: HuggingFace Fine-Tuning (ViT + Beans) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-huggingface-fine-tuning/lab-1-huggingface-fine-tuning.ipynb) |
 
-### Topic 5: Vibe Coding RNNs and AI Agent Chatbot
+### Topic 5: RAG AI Chatbot with Vibe Coding
+
+**RAG AI Chatbot (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/rag-ai-chatbot)
 
 | Lab | Open in Colab |
 |-----|---------------|
-| Lab 1: TextVectorization & Embedding (IMDB) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-1-text-vectorization-embedding/lab-1-text-vectorization-embedding.ipynb) |
-| Lab 2: Build RNN Models (LSTM, GRU, Bidirectional) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-2-rnn-models/lab-2-rnn-models.ipynb) |
-| Lab 3: Text Classification with RNN | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-3-text-classification/lab-3-text-classification.ipynb) |
-| Lab 4: AI Agent Chatbot | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rnn-ai-chatbot/lab-4-ai-agent-chatbot/lab-4-ai-agent-chatbot.ipynb) |
+| Lab 1: RAG AI Chatbot (ChromaDB + Qwen) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rag-ai-chatbot/lab-1-rag-ai-chatbot/lab-1-rag-ai-chatbot.ipynb) |

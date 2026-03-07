@@ -1,6 +1,6 @@
 # Vibe Coding Guide: Build a Residual Network Trainer with Gradio
 
-This guide walks you through building an interactive mini-ResNet trainer using **vibe coding**. You will also learn how to deploy it to Hugging Face Spaces.
+This guide walks you through building an interactive mini-ResNet trainer for **Fashion-MNIST** using **vibe coding**. This follows on from Topic 2 (Solving Overfitting), applying residual architectures to the same Fashion-MNIST dataset. You will also learn how to deploy it to Hugging Face Spaces.
 
 ---
 
@@ -9,13 +9,13 @@ This guide walks you through building an interactive mini-ResNet trainer using *
 Make sure you have the required dependencies installed:
 
 ```bash
-pip install keras torch torchvision scikit-learn gradio matplotlib numpy
+pip install keras torch torchvision scikit-learn gradio matplotlib numpy datasets
 ```
 
 Or if using `uv`:
 
 ```bash
-uv pip install keras torch torchvision scikit-learn gradio matplotlib numpy
+uv pip install keras torch torchvision scikit-learn gradio matplotlib numpy datasets
 ```
 
 ---
@@ -27,23 +27,33 @@ Open your AI assistant (Claude, ChatGPT, etc.) and use the following prompt:
 ### The Prompt
 
 ```
-Create a single Python file for training a mini-ResNet on CIFAR-10 using Keras
-with PyTorch backend and Gradio.
+Create a single Python file for training a mini-ResNet on Fashion-MNIST using
+Keras with PyTorch backend and Gradio. Load the dataset from HuggingFace with
+load_dataset("fashion_mnist").
 
-The app should:
-- Use the Functional API to build residual blocks with skip connections
+Dataset:
+- Fashion-MNIST: 28x28 grayscale images, 10 classes
+- Normalize to [0,1] and reshape to (28, 28, 1)
+- Split training set into 50,000 train / 10,000 validation
+
+Model Architecture:
+- Input layer for 28x28x1 images
+- Initial Conv2D layer with 32 filters (3x3), BatchNorm, ReLU
+- 3 stages of residual blocks, doubling filters each stage (32 → 64 → 128)
 - Each residual block: Conv2D → BatchNorm → ReLU → Conv2D → BatchNorm → Add(shortcut) → ReLU
 - Use 1x1 convolution to project the shortcut when dimensions change
-- Build 3 stages of residual blocks, doubling filters each stage (e.g., 32 → 64 → 128)
-- End with GlobalAveragePooling2D → Dropout → Dense(10, softmax)
-- Let users adjust via Gradio:
+- Use stride=2 at the start of stages 2 and 3 to downsample
+- GlobalAveragePooling2D → Dropout(0.3) → Dense(10, softmax)
+
+Let users adjust via Gradio:
   - Optimizer (Adam, SGD, SGD + Momentum, RMSprop, AdamW)
   - Learning rate slider
   - Number of residual blocks per stage (1-4)
   - Base filters (16, 32, 48, 64)
-  - Epochs slider
-  - Batch size slider
+  - Epochs slider (default 10)
+  - Batch size slider (default 128)
   - Early stopping checkbox
+
 - Show a progress bar during training
 - Display accuracy/loss plots, confusion matrix, and a training summary
 - The summary should show the architecture, configuration, test accuracy, and overfit gap
@@ -55,9 +65,9 @@ The app should:
 The AI will generate a Python file (e.g., `residual-network-trainer.py`) with:
 
 1. **Keras backend setup** -- `os.environ["KERAS_BACKEND"] = "torch"` before importing Keras
-2. **CIFAR-10 data pipeline** -- download, normalize to [0,1], train/val/test split
+2. **Fashion-MNIST data pipeline** -- load from HuggingFace, normalize to [0,1], reshape to (28,28,1), train/val/test split
 3. **Residual block function** -- reusable `residual_block(x, filters, stride)` using Functional API
-4. **Mini-ResNet builder** -- 3 stages of configurable residual blocks
+4. **Mini-ResNet builder** -- 3 stages of configurable residual blocks for 28x28 grayscale input
 5. **Configurable training** -- optimizer, learning rate, depth, width as parameters
 6. **Evaluation** -- accuracy/loss curves + confusion matrix using sklearn
 7. **Gradio UI** -- dropdowns, sliders, checkbox, plots, and text output
@@ -73,10 +83,10 @@ Vibe coding is about iterating. Here are follow-up prompts you can use:
 | Add activation selection | "Add an activation function dropdown with relu, swish, gelu" |
 | Add learning rate scheduler | "Add ReduceLROnPlateau and show the learning rate changes in the plot" |
 | Show model architecture | "Display the model summary and a plot_model diagram in the output" |
-| Add more optimizers | "Add AdaGrad and Nadam to the optimizer choices" |
 | Compare with plain network | "Add a checkbox to train a plain network (no skip connections) for comparison" |
-| Change dataset | "Switch from CIFAR-10 to CIFAR-100" |
-| Add per-class accuracy | "Show per-class accuracy for all 10 classes in the summary" |
+| Compare with Topic 2 | "Add a simple CNN baseline (no skip connections) to show the improvement from residual blocks" |
+| Add data augmentation | "Add RandomFlip and RandomRotation augmentation layers from Topic 2" |
+| Add per-class accuracy | "Show per-class accuracy for all 10 Fashion-MNIST classes in the summary" |
 
 ---
 
@@ -98,6 +108,7 @@ Open `http://127.0.0.1:7860` in your browser. Try these experiments:
 
 | Experiment | Settings | What to Observe |
 |---|---|---|
+| Quick baseline | 2 blocks, 32 filters, Adam, 10 epochs | Good accuracy on Fashion-MNIST |
 | Shallow ResNet | 1 block, 32 filters, Adam | Fast training, moderate accuracy |
 | Deep ResNet | 4 blocks, 32 filters, Adam | Better accuracy, slower training |
 | Wide ResNet | 2 blocks, 64 filters, Adam | More parameters, potentially better |
@@ -151,6 +162,7 @@ torchvision
 scikit-learn
 matplotlib
 numpy
+datasets
 """
 
 api.upload_file(
@@ -177,7 +189,7 @@ huggingface-cli repo create residual-network-trainer --type space --space-sdk gr
 # Clone, copy files, push
 git clone https://huggingface.co/spaces/YOUR_USERNAME/residual-network-trainer
 cp residual-network-trainer.py residual-network-trainer/app.py
-echo -e "keras\ntorch\ntorchvision\nscikit-learn\nmatplotlib\nnumpy" > residual-network-trainer/requirements.txt
+echo -e "keras\ntorch\ntorchvision\nscikit-learn\nmatplotlib\nnumpy\ndatasets" > residual-network-trainer/requirements.txt
 cd residual-network-trainer
 git add . && git commit -m "Add residual network trainer" && git push
 ```
@@ -196,7 +208,8 @@ This takes 2-5 minutes. Visit your Space URL to see it live.
 ## Key Takeaways
 
 1. **Residual blocks solve vanishing gradients** -- skip connections allow gradients to flow directly through the network, enabling much deeper architectures
-2. **Deeper is not always better** -- more blocks increase capacity but also training time; find the sweet spot for your dataset
-3. **Width matters too** -- increasing base filters adds parameters and capacity without adding depth
-4. **The Functional API is essential for skip connections** -- you cannot build residual blocks with Sequential because Add layers need two inputs
-5. **Vibe coding** lets you build complex architectures by describing what you want and iterating on the result
+2. **Continuity from Topic 2** -- using the same Fashion-MNIST dataset lets you directly compare ResNet performance against the plain CNNs from Topic 2 (overfitting labs)
+3. **Deeper is not always better** -- more blocks increase capacity but also training time; find the sweet spot for your dataset
+4. **Width matters too** -- increasing base filters adds parameters and capacity without adding depth
+5. **The Functional API is essential for skip connections** -- you cannot build residual blocks with Sequential because Add layers need two inputs
+6. **Vibe coding** lets you build complex architectures by describing what you want and iterating on the result

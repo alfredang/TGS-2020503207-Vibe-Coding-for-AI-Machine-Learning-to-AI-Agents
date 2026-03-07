@@ -1,7 +1,7 @@
 """
 Residual Network Trainer — Interactive Gradio Interface
 =======================================================
-Train a mini-ResNet on CIFAR-10 using Keras with PyTorch backend.
+Train a mini-ResNet on Fashion-MNIST using Keras with PyTorch backend.
 Adjust depth, filters, learning rate, optimizer, and more via the Gradio UI.
 """
 
@@ -22,27 +22,34 @@ print(f"Keras version: {keras.__version__}")
 print(f"Backend: {keras.backend.backend()}")
 
 
-# ── 2. Download and Prepare CIFAR-10 from Hugging Face ────────────────────
-ds = load_dataset("cifar10")
+# ── 2. Download and Prepare Fashion-MNIST from Hugging Face ───────────────
+ds = load_dataset("fashion_mnist")
 
-CLASS_NAMES = ds["train"].features["label"].names
+CLASS_NAMES = [
+    "T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
+    "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot",
+]
+
 
 def ds_to_arrays(split):
     """Convert a HuggingFace dataset split to numpy arrays."""
-    images = np.array([np.array(img) for img in split["img"]], dtype="float32") / 255.0
+    images = np.array(split["image"], dtype="float32") / 255.0
+    # Reshape from (N, 28, 28) to (N, 28, 28, 1) for Conv2D
+    images = images.reshape(-1, 28, 28, 1)
     labels = np.array(split["label"])
     return images, labels
+
 
 x_train_all, y_train_all = ds_to_arrays(ds["train"])
 x_test, y_test = ds_to_arrays(ds["test"])
 
 # Train/val split
-x_train = x_train_all[:45000]
-y_train = y_train_all[:45000]
-x_val = x_train_all[45000:]
-y_val = y_train_all[45000:]
+x_train = x_train_all[:50000]
+y_train = y_train_all[:50000]
+x_val = x_train_all[50000:]
+y_val = y_train_all[50000:]
 
-NUM_CLASSES = len(CLASS_NAMES)
+NUM_CLASSES = 10
 
 print(f"Training set:   {x_train.shape}")
 print(f"Validation set: {x_val.shape}")
@@ -99,16 +106,17 @@ def residual_block(x, filters, stride=1):
 
 
 # ── 5. Model Builder ──────────────────────────────────────────────────────
-def build_resnet(num_blocks, base_filters, activation="relu"):
-    """Build a mini-ResNet with configurable depth and width."""
-    inputs = keras.layers.Input(shape=(32, 32, 3))
+def build_resnet(num_blocks, base_filters):
+    """Build a mini-ResNet for 28x28x1 Fashion-MNIST images."""
+    inputs = keras.layers.Input(shape=(28, 28, 1))
 
     # Initial convolution
     x = keras.layers.Conv2D(base_filters, (3, 3), padding="same", use_bias=False)(inputs)
     x = keras.layers.BatchNormalization()(x)
     x = keras.layers.ReLU()(x)
 
-    # Residual stages — each stage doubles the filters and halves spatial dims
+    # Residual stages — each stage doubles the filters
+    # Stage 1: same spatial dims, Stage 2+: stride=2 to downsample
     filters = base_filters
     for stage in range(3):
         for block in range(num_blocks):
@@ -223,11 +231,12 @@ def train_and_evaluate(optimizer_name, learning_rate, num_blocks, base_filters,
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=CLASS_NAMES)
     disp.plot(ax=ax3, cmap="Blues", values_format="d", colorbar=False)
     ax3.set_title("Confusion Matrix on Test Set", fontsize=14)
+    plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
 
     # ── 10. Architecture description ─────────────────────────────────────
     arch_lines = []
-    arch_lines.append(f"Input (32x32x3)")
+    arch_lines.append(f"Input (28x28x1)")
     arch_lines.append(f"  → Conv2D({base_filters}, 3x3) → BatchNorm → ReLU")
     filters = base_filters
     for stage in range(3):
@@ -289,7 +298,7 @@ demo = gr.Interface(
             label="Base Filters",
         ),
         gr.Slider(
-            minimum=5, maximum=50, value=20, step=5,
+            minimum=5, maximum=50, value=10, step=5,
             label="Epochs",
         ),
         gr.Slider(
@@ -304,11 +313,12 @@ demo = gr.Interface(
         gr.Textbox(label="Training Summary", lines=28),
     ],
     flagging_mode="never",
-    title="Residual Network Trainer — CIFAR-10",
+    title="Residual Network Trainer — Fashion-MNIST",
     description=(
-        "Train a mini-ResNet on CIFAR-10 with skip connections and residual blocks. "
-        "Adjust the number of residual blocks, base filters, optimizer, learning rate, "
-        "and other hyperparameters, then click Submit to train and see the results."
+        "Train a mini-ResNet on Fashion-MNIST with skip connections and residual blocks. "
+        "This builds on Topic 2 (Overfitting) by applying residual architectures to the "
+        "same Fashion-MNIST dataset. Adjust the number of residual blocks, base filters, "
+        "optimizer, learning rate, and other hyperparameters, then click Submit to train."
     ),
 )
 

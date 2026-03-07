@@ -86,11 +86,17 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 3: Residual Networks with Vibe Coding
 
+**Residual Network Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/residual-network-trainer)
+
 | Lab | Open in Colab |
 |-----|---------------|
 | Lab 1: Skip Connections & Residual Blocks | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-skip-connections/lab-1-skip-connections.ipynb) |
 
 ### Topic 4: HuggingFace Fine Tuning with Vibe Coding
+
+**ViT Beans Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/vit-beans-trainer)
+
+**ViT Beans Classifier (Fine-Tuned Model):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/vit-beans-classifier)
 
 | Lab | Open in Colab |
 |-----|---------------|

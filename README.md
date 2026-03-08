@@ -106,6 +106,8 @@ Click any badge below to open the notebook directly in Google Colab.
 
 **RAG AI Chatbot (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/rag-ai-chatbot)
 
+**Pocket TTS Demo (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/pocket-tts-demo)
+
 | Lab | Open in Colab |
 |-----|---------------|
 | Lab 1: RAG AI Chatbot (ChromaDB + Qwen) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rag-ai-chatbot/lab-1-rag-ai-chatbot/lab-1-rag-ai-chatbot.ipynb) |

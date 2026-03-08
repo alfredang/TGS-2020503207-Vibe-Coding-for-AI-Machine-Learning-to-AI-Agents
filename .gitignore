@@ -18,3 +18,8 @@ wheels/
 # Model files
 *.keras
 *.h5
+*.safetensors
+vit-beans-finetuned/
+
+# Gradio cache
+.gradio/

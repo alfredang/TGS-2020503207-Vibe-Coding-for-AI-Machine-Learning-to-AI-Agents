@@ -96,9 +96,16 @@ def build_baseline():
 
 
 def build_regularized(use_dropout, use_batchnorm, use_augmentation,
-                       use_l2, dropout_rate, l2_factor):
+                       use_l1, use_l2, dropout_rate, l1_factor, l2_factor):
     """Build a model with selected regularization techniques."""
-    l2_reg = keras.regularizers.l2(l2_factor) if use_l2 else None
+    if use_l1 and use_l2:
+        reg = keras.regularizers.l1_l2(l1=l1_factor, l2=l2_factor)
+    elif use_l1:
+        reg = keras.regularizers.l1(l1_factor)
+    elif use_l2:
+        reg = keras.regularizers.l2(l2_factor)
+    else:
+        reg = None
 
     if use_augmentation:
         # CNN model to support spatial data augmentation
@@ -110,7 +117,7 @@ def build_regularized(use_dropout, use_batchnorm, use_augmentation,
 
         # Conv block 1
         layers.append(keras.layers.Conv2D(32, (3, 3), padding="same",
-                                          kernel_regularizer=l2_reg))
+                                          kernel_regularizer=reg))
         if use_batchnorm:
             layers.append(keras.layers.BatchNormalization())
         layers.append(keras.layers.Activation("relu"))
@@ -120,7 +127,7 @@ def build_regularized(use_dropout, use_batchnorm, use_augmentation,
 
         # Conv block 2
         layers.append(keras.layers.Conv2D(64, (3, 3), padding="same",
-                                          kernel_regularizer=l2_reg))
+                                          kernel_regularizer=reg))
         if use_batchnorm:
             layers.append(keras.layers.BatchNormalization())
         layers.append(keras.layers.Activation("relu"))
@@ -130,14 +137,14 @@ def build_regularized(use_dropout, use_batchnorm, use_augmentation,
 
         # Dense head
         layers.append(keras.layers.Flatten())
-        layers.append(keras.layers.Dense(256, kernel_regularizer=l2_reg))
+        layers.append(keras.layers.Dense(256, kernel_regularizer=reg))
         if use_batchnorm:
             layers.append(keras.layers.BatchNormalization())
         layers.append(keras.layers.Activation("relu"))
         if use_dropout:
             layers.append(keras.layers.Dropout(dropout_rate))
 
-        layers.append(keras.layers.Dense(128, kernel_regularizer=l2_reg))
+        layers.append(keras.layers.Dense(128, kernel_regularizer=reg))
         if use_batchnorm:
             layers.append(keras.layers.BatchNormalization())
         layers.append(keras.layers.Activation("relu"))
@@ -150,7 +157,7 @@ def build_regularized(use_dropout, use_batchnorm, use_augmentation,
         layers = [keras.layers.Input(shape=(784,))]
 
         for units in LAYER_UNITS:
-            layers.append(keras.layers.Dense(units, kernel_regularizer=l2_reg))
+            layers.append(keras.layers.Dense(units, kernel_regularizer=reg))
             if use_batchnorm:
                 layers.append(keras.layers.BatchNormalization())
             layers.append(keras.layers.Activation("relu"))
@@ -170,7 +177,8 @@ def build_regularized(use_dropout, use_batchnorm, use_augmentation,
 
 # ── 5. Training and Comparison ──────────────────────────────────────────────
 def train_and_compare(use_dropout, use_batchnorm, use_augmentation,
-                       use_l2, use_early_stopping, dropout_rate, l2_factor,
+                       use_l1, use_l2, use_early_stopping,
+                       dropout_rate, l1_factor, l2_factor,
                        epochs, progress=gr.Progress()):
     """Train baseline and regularized models, return comparison plots."""
     epochs = int(epochs)
@@ -192,7 +200,7 @@ def train_and_compare(use_dropout, use_batchnorm, use_augmentation,
     progress(0, desc="Training regularized model...")
     reg_model = build_regularized(
         use_dropout, use_batchnorm, use_augmentation,
-        use_l2, dropout_rate, l2_factor,
+        use_l1, use_l2, dropout_rate, l1_factor, l2_factor,
     )
 
     # Choose data format based on augmentation
@@ -293,6 +301,8 @@ def train_and_compare(use_dropout, use_batchnorm, use_augmentation,
         techniques.append("Batch Normalization")
     if use_augmentation:
         techniques.append("Data Augmentation (RandomFlip + RandomRotation)")
+    if use_l1:
+        techniques.append(f"L1 Regularization (factor={l1_factor})")
     if use_l2:
         techniques.append(f"L2 Regularization (factor={l2_factor})")
     if use_early_stopping:
@@ -349,10 +359,13 @@ demo = gr.Interface(
         gr.Checkbox(value=True, label="Dropout"),
         gr.Checkbox(value=True, label="Batch Normalization"),
         gr.Checkbox(value=False, label="Data Augmentation (switches to CNN)"),
-        gr.Checkbox(value=True, label="L2 Regularization"),
+        gr.Checkbox(value=False, label="L1 Regularization (sparsity)"),
+        gr.Checkbox(value=True, label="L2 Regularization (weight decay)"),
         gr.Checkbox(value=True, label="Early Stopping"),
         gr.Slider(minimum=0.1, maximum=0.7, value=0.5, step=0.05,
                   label="Dropout Rate"),
+        gr.Slider(minimum=0.000001, maximum=0.001, value=0.00001, step=0.000001,
+                  label="L1 Factor"),
         gr.Slider(minimum=0.00001, maximum=0.01, value=0.0001, step=0.00001,
                   label="L2 Factor"),
         gr.Slider(minimum=5, maximum=40, value=20, step=5,

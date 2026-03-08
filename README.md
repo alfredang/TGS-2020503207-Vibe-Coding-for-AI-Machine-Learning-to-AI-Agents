@@ -66,7 +66,7 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 1: Vibe Coding CNNs and AI Agent Image Classifier
 
-**CNN MNIST Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/cnn-mnist-trainer)
+**CNN MNIST Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/cnn-mnist-trainer)
 
 | Lab | Open in Colab |
 |-----|---------------|
@@ -76,7 +76,7 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 2: Solving Overfitting Issues with Vibe Coding
 
-**Overfitting Explorer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/overfitting-explorer)
+**Overfitting Explorer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/overfitting-explorer)
 
 | Lab | Open in Colab |
 |-----|---------------|
@@ -86,7 +86,7 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 3: Residual Networks with Vibe Coding
 
-**Residual Network Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/residual-network-trainer)
+**Residual Network Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/residual-network-trainer)
 
 | Lab | Open in Colab |
 |-----|---------------|
@@ -94,9 +94,9 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 4: HuggingFace Fine Tuning with Vibe Coding
 
-**ViT Beans Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/vit-beans-trainer)
+**ViT Beans Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/vit-beans-trainer)
 
-**ViT Beans Classifier (Fine-Tuned Model):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/vit-beans-classifier)
+**ViT Beans Classifier (Fine-Tuned Model):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/vit-beans-classifier)
 
 | Lab | Open in Colab |
 |-----|---------------|
@@ -104,9 +104,9 @@ Click any badge below to open the notebook directly in Google Colab.
 
 ### Topic 5: RAG AI Chatbot with Vibe Coding
 
-**RAG AI Chatbot (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/rag-ai-chatbot)
+**RAG AI Chatbot (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/rag-ai-chatbot)
 
-**Pocket TTS Demo (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/tertiaryinfotech/pocket-tts-demo)
+**Pocket TTS Demo (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/pocket-tts-demo)
 
 | Lab | Open in Colab |
 |-----|---------------|

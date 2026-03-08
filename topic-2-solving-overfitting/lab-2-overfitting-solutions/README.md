@@ -15,7 +15,8 @@ Learn to apply various regularization techniques to combat overfitting, testing 
 - How Batch Normalization stabilizes training
 - How data augmentation increases effective dataset size
 - How Early Stopping prevents training beyond the optimal point
-- How L2 regularization penalizes large weights
+- How L1 regularization encourages sparsity (feature selection)
+- How L2 regularization penalizes large weights (weight decay)
 - How to combine multiple techniques for best results
 
 ## Prerequisites
@@ -63,15 +64,21 @@ Train the same overfitting-prone model from Lab 1 to serve as a comparison basel
 - Train and observe automatic stopping at optimal epoch
 - Compare final performance
 
-### Step 7: Apply L2 Regularization
+### Step 7: Apply L1 Regularization
+
+- Add `kernel_regularizer=keras.regularizers.l1(1e-5)` to dense layers
+- Train and compare curves
+- Observe how L1 encourages sparsity -- some weights become exactly zero
+
+### Step 8: Apply L2 Regularization
 
 - Add `kernel_regularizer=keras.regularizers.l2(1e-4)` to dense layers
 - Train and compare curves
-- Observe how weight penalty reduces overfitting
+- Observe how L2 shrinks all weights but rarely zeros them out
 
-### Step 8: Combine All Techniques
+### Step 9: Combine All Techniques
 
-Build a single model that uses Dropout + BatchNormalization + Data Augmentation + L2 Regularization, trained with Early Stopping.
+Build a single model that uses Dropout + BatchNormalization + Data Augmentation + L1/L2 Regularization, trained with Early Stopping.
 
 ### Step 9: Interactive Gradio Interface
 

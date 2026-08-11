@@ -1,0 +1,23 @@
+# AI Vibe Coding for Multi-Agents System (TGS-2020503207)
+# Install with:  pip install -r requirements.txt
+#           or:  uv pip install -r requirements.txt
+
+# Topic 1 — raw agent loop, memory and skills
+openai>=1.60.0
+python-dotenv>=1.0.1
+
+# Topic 3 — OpenAI Agents SDK multi-agent system
+openai-agents>=0.2.0
+pydantic>=2.9.0
+
+# Topic 4 — Google Gemini Agent Development Kit
+google-adk>=1.0.0
+
+# Topics 3-4 — Streamlit deployment
+streamlit>=1.40.0
+
+# Topic 5 — Model Context Protocol server
+mcp[cli]>=1.9.0
+
+# Shared — HTTP calls from function tools
+requests>=2.32.0

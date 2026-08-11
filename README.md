@@ -1,113 +1,129 @@
-# Vibe Coding for AI: Machine Learning to AI Agents
+# WSQ AI Vibe Coding for Multi-Agents System
 
-A 2-day hands-on WSQ course covering deep learning with Keras 3 (PyTorch backend), from CNNs to RAG AI Chatbots. All labs use a "vibe coding" workflow where you collaborate with AI assistants to build, debug, and iterate on ML code.
+[![WSQ](https://img.shields.io/badge/WSQ-TGS--2020503207-1F6FEB)](https://www.tertiarycourses.com.sg/wsq-ai-vibe-coding-for-multi-agents-system.html)
+[![Duration](https://img.shields.io/badge/Duration-2%20days%20%C2%B7%2016%20hours-10B981)](#lesson-plan)
+[![Level](https://img.shields.io/badge/Level-Intermediate-7C3AED)](#prerequisites)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 
-**Course Page:** [Tertiary Courses — WSQ Vibe Coding for AI: Machine Learning to AI Agents](https://www.tertiarycourses.com.sg/wsq-vibe-coding-for-ai-machine-learning-to-ai-agents.html)
+Course materials for the WSQ course **AI Vibe Coding for Multi-Agents System** (TGS-2020503207),
+conducted by **Tertiary Infotech Academy Pte Ltd** (UEN 201200696W).
 
-**Apply via SkillsFuture:** [MySkillsFuture Course Directory (TGS-2020503207)](https://www.myskillsfuture.gov.sg/content/portal/en/training-exchange/course-directory/course-detail.html?courseReferenceNumber=TGS-2020503207)
+Build collaborative multi-agent AI systems — from a single tool-calling agent to hierarchical
+sub-agents coordinated over the Model Context Protocol — using vibe coding as the build method.
+
+---
+
+## What you will build
+
+| # | Lab | Topic | You build |
+|---|-----|-------|-----------|
+| 1 | [Build Your First Tool-Calling Agent](labs/lab-01-build-your-first-tool-calling-agent.md) | 1 | An agent loop with two of your own tools |
+| 2 | [Agent Memory and Reusable Agent Skills](labs/lab-02-agent-memory-and-reusable-agent-skills.md) | 1 | Short-term + persistent memory, and a skill file |
+| 3 | [Vibe Code an Agent with a Structured Workflow](labs/lab-03-vibe-code-an-agent-with-a-structured-workflow.md) | 2 | A research agent generated from your SPEC.md |
+| 4 | [Context Engineering and a Reusable Coding Skill](labs/lab-04-context-engineering-and-a-reusable-coding-skill.md) | 2 | A project context file and a reusable skill |
+| 5 | [First Agent with the OpenAI Agents SDK](labs/lab-05-first-agent-with-the-openai-agents-sdk.md) | 3 | An SDK agent with Pydantic structured output |
+| 6 | [Supervisor Routing and Sub-Agent Delegation](labs/lab-06-supervisor-routing-and-sub-agent-delegation.md) | 3 | A triage supervisor over three specialists |
+| 7 | [Deploy the Multi-Agent System with Streamlit](labs/lab-07-deploy-the-multi-agent-system-with-streamlit.md) | 3 | A Streamlit chat app with visible routing |
+| 8 | [Build a Multi-Agent System with the Gemini Agent SDK](labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk.md) | 4 | A Gemini coordinator with sub-agents |
+| 9 | [Deploy the Gemini Multi-Agent System with Streamlit](labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit.md) | 4 | The Gemini system deployed + an SDK comparison |
+| 10 | [Build and Connect an MCP Server](labs/lab-10-build-and-connect-an-mcp-server.md) | 5 | An MCP server with three typed tools |
+| 11 | [Hierarchical Sub-Agents and Context Isolation](labs/lab-11-hierarchical-sub-agents-and-context-isolation.md) | 5 | A three-tier orchestrator → sub-agents → MCP |
+
+---
+
+## Course outline
+
+| Topic | Title | Focus |
+|-------|-------|-------|
+| 1 | **Modern Agent Foundations** | Agent anatomy, skills, memory, MCP, single-agent → multi-agent |
+| 2 | **Vibe Coding for Multi-Agent Systems** | The structured workflow, context engineering, tooling |
+| 3 | **Multi-Agent Development with OpenAI Agents SDK** | Structured outputs, tool calling, supervisor routing, Streamlit |
+| 4 | **Multi-Agent Development with Gemini Agent SDK** | Google ADK agent design, collaboration, Streamlit |
+| 5 | **MCP and Sub-Agents** | MCP servers, tool orchestration, hierarchical architecture |
+
+## Learning outcomes
+
+- **LO1** — Explain the components of a modern AI agent (skills, memory, tools, MCP) and the progression from single-agent to multi-agent collaboration.
+- **LO2** — Apply a structured vibe coding workflow with context engineering to specify, generate and verify agent code reliably.
+- **LO3** — Build a collaborative multi-agent system with the OpenAI Agents SDK using structured outputs, tool calling and supervisor routing, and deploy it with Streamlit.
+- **LO4** — Build a collaborative multi-agent system with the Google Gemini Agent SDK and deploy it with Streamlit.
+- **LO5** — Orchestrate tools through MCP and design hierarchical sub-agent architectures for delegated, specialised work.
+
+---
+
+## Getting started
+
+```bash
+git clone https://github.com/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System.git
+cd TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System
+
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r labs/requirements.txt
+```
+
+Create a `.env` file in your working folder — **never commit it**:
+
+```bash
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=...
+```
+
+Verify the setup:
+
+```bash
+python3 -c "import openai, agents, pydantic, streamlit; print('OK')"
+python3 -c "from google.adk.agents import Agent; print('ADK OK')"
+python3 -c "from mcp.server.fastmcp import FastMCP; print('MCP OK')"
+```
 
 ## Prerequisites
 
-- Python 3.13+
-- [uv](https://docs.astral.sh/uv/) package manager
-- Basic Python programming knowledge
-- Familiarity with NumPy and basic ML concepts
+- Python 3.11 or later, and a terminal + code editor (VS Code recommended).
+- An OpenAI API key (Topics 1, 3, 5) and a Google AI Studio key (Topic 4).
+- An AI coding agent for the vibe coding labs — Claude Code, Gemini CLI, Codex CLI, Cursor or Windsurf.
+- Basic Python: functions, type hints, virtual environments.
 
-## Setup
+## Tech stack
 
-### 1. Install uv (if not already installed)
+`openai` · `openai-agents` · `google-adk` · `pydantic` · `streamlit` · `mcp[cli]` · `python-dotenv`
 
-```bash
-# macOS / Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
+---
 
-# Windows
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
+## Courseware
 
-### 2. Clone and set up the project
+The slide deck, Lesson Plan and Learner Guide are distributed through the
+[LMS/TMS portal](https://lms-tms.tertiaryinfotech.com) — sign in with your registered email and
+open **My Courses**. The **Learner Guide** carries the full detailed step-by-step for every lab and
+is your open-book reference during the assessment.
 
-```bash
-git clone <repo-url>
-cd TGS-2020503207-vibe-coding-ml
-```
+> Assessment papers are confidential and are **not** published in this repository.
 
-### 3. Install dependencies and create virtual environment
+## Assessment
 
-```bash
-uv sync
-```
+| Instrument | Format | Duration |
+|---|---|---|
+| Written Assessment (WA) | Short-Answer Questions (SAQ) | 50 minutes |
+| Practical Performance (PP) | Hands-on multi-agent build tasks | 75 minutes |
 
-This automatically creates a `.venv` with Python 3.13 and installs all dependencies (Keras 3, PyTorch, Gradio, HuggingFace, etc.).
+Open book. A minimum of **75% attendance** is required to be eligible for assessment and funding.
 
-### 4. Set up environment variables
+## Funding
 
-Create a `.env` file in the project root with your HuggingFace API token:
+WSQ-funded for eligible Singapore Citizens and PRs (baseline 50%, MCES/SME 70%), with SkillsFuture
+Credit, SFEC, UTAP, PSEA and Absentee Payroll support. See the
+[course page](https://www.tertiarycourses.com.sg/wsq-ai-vibe-coding-for-multi-agents-system.html)
+for current rates and eligibility.
 
-```bash
-HF_TOKEN=your_huggingface_token_here
-```
+## Skills Framework
 
-### 5. Launch Jupyter
+**TSC:** Analytics and Computational Modelling — `ICT-DIT-3001-1.1`
 
-```bash
-uv run jupyter notebook
-```
+---
 
-Or open notebooks directly in VS Code with the Python extension (select the `.venv` kernel).
+## About
 
-All notebooks use **Keras 3 with PyTorch backend**. The backend is configured automatically at the top of each notebook.
+**Tertiary Infotech Academy Pte Ltd** (UEN 201200696W) · [tertiarycourses.com.sg](https://www.tertiarycourses.com.sg)
+Trainer: **Dr Alfred Ang**
 
-All notebooks are **Google Colab compatible** -- just upload and run.
-
-## Course Outline — Open in Colab
-
-Click any badge below to open the notebook directly in Google Colab.
-
-### Topic 1: Vibe Coding CNNs and AI Agent Image Classifier
-
-**CNN MNIST Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/cnn-mnist-trainer)
-
-| Lab | Open in Colab |
-|-----|---------------|
-| Lab 1: Build a CNN from Scratch (MNIST) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-1-cnn-from-scratch/lab-1-cnn-from-scratch.ipynb) |
-| Lab 2: Train CNN with Vibe-Coding (CIFAR-10) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-2-vibe-coding-cnn/lab-2-vibe-coding-cnn.ipynb) |
-| Lab 3: AI Agent Image Classifier | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-1-cnn-image-classifier/lab-3-ai-agent-image-classifier/lab-3-ai-agent-image-classifier.ipynb) |
-
-### Topic 2: Solving Overfitting Issues with Vibe Coding
-
-**Overfitting Explorer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/overfitting-explorer)
-
-| Lab | Open in Colab |
-|-----|---------------|
-| Lab 1: Diagnose Overfitting (Fashion-MNIST) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-2-solving-overfitting/lab-1-diagnose-overfitting/lab-1-diagnose-overfitting.ipynb) |
-| Lab 2: Apply Overfitting Solutions | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-2-solving-overfitting/lab-2-overfitting-solutions/lab-2-overfitting-solutions.ipynb) |
-| Lab 3: Before/After Comparison | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-2-solving-overfitting/lab-3-before-after-comparison/lab-3-before-after-comparison.ipynb) |
-
-### Topic 3: Residual Networks with Vibe Coding
-
-**Residual Network Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/residual-network-trainer)
-
-| Lab | Open in Colab |
-|-----|---------------|
-| Lab 1: Skip Connections & Residual Blocks | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-3-flexible-architectures/lab-1-skip-connections/lab-1-skip-connections.ipynb) |
-
-### Topic 4: HuggingFace Fine Tuning with Vibe Coding
-
-**ViT Beans Trainer (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/vit-beans-trainer)
-
-**ViT Beans Classifier (Fine-Tuned Model):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/vit-beans-classifier)
-
-| Lab | Open in Colab |
-|-----|---------------|
-| Lab 1: HuggingFace Fine-Tuning (ViT + Beans) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-4-fine-tuning/lab-1-huggingface-fine-tuning/lab-1-huggingface-fine-tuning.ipynb) |
-
-### Topic 5: RAG AI Chatbot with Vibe Coding
-
-**RAG AI Chatbot (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/rag-ai-chatbot)
-
-**Pocket TTS Demo (Interactive Demo):** [Launch on Hugging Face Spaces](https://huggingface.co/spaces/alfredang/pocket-tts-demo)
-
-| Lab | Open in Colab |
-|-----|---------------|
-| Lab 1: RAG AI Chatbot (ChromaDB + Qwen) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alfredang/TGS-2020503207-Vibe-Coding-for-AI-Machine-Learning-to-AI-Agents/blob/main/topic-5-rag-ai-chatbot/lab-1-rag-ai-chatbot/lab-1-rag-ai-chatbot.ipynb) |
+© 2026 Tertiary Infotech Academy Pte Ltd. All rights reserved.

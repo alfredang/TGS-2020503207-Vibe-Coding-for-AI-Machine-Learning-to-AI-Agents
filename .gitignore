@@ -1,25 +1,35 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+# ---------------------------------------------------------------------------
+# CONFIDENTIAL — never publish to GitHub.
+# The assessment papers and answer keys go to Google Drive / the LMS only.
+# ---------------------------------------------------------------------------
+assessment/
+reference/tms/
 
-# Virtual environments
-.venv
-
-# Environment secrets
+# Secrets
 .env
+*.env
+!.env.example
+**/lms_tms_api_key
 
-# Jupyter
-.ipynb_checkpoints/
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.python-version
+uv.lock
 
-# Model files
-*.keras
-*.h5
-*.safetensors
-vit-beans-finetuned/
+# Agent lab artifacts
+memory.json
 
-# Gradio cache
-.gradio/
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*~
+.idea/
+.vscode/
+
+# Office lock files
+~$*.docx
+~$*.pptx
+~$*.xlsx

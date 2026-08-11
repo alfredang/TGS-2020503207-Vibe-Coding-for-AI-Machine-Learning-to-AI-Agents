@@ -1,0 +1,25 @@
+# Environment secrets — never commit API keys
+.env
+.env.*
+!.env.example
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv/
+
+# Agent long-term memory store (Lab 2)
+memory.json
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store

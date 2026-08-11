@@ -95,7 +95,8 @@ H("Course Information",1)
 info=[("Course Title",C.TITLE),("WSQ Course Reference",C.COURSE_CODE),
       ("Training Provider",C.ORG+"  ("+C.UEN.replace('UEN: ','UEN ')+")"),
       ("Skills Framework",f"{C.TSC_TITLE}  ({C.TSC_CODE})"),
-      ("Duration",f"{C.DAYS} days · 8 training hours per day (16 hours), plus 2 hours assessment"),
+      ("Duration",f"{C.DAYS} days · 8 instructional hours per day (16 hours), plus assessment "
+                  "(WA 50 minutes + PP 75 minutes)"),
       ("Daily Timing","9:30 am – 7:00 pm (8 instructional hours, plus a 1-hour lunch and two 15-minute tea breaks)"),
       ("Mode","Instructor-led, hands-on multi-agent development labs in Python"),
       ("Trainer",C.TRAINER)]

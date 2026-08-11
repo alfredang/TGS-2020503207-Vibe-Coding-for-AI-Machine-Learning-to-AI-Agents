@@ -121,8 +121,9 @@ DAY_THEMES = {
 
 # ------------------------------------------------------------------ assessment
 ASSESSMENT = dict(
-    written="Written Assessment (WA) — Short-Answer Questions (SAQ), 1 hour, open book.",
-    practical="Practical Performance (PP) — hands-on multi-agent build tasks, 1 hour, open book.",
+    # Durations mirror the papers on file with the ATO (pulled from LMS-TMS): WA 50 min, PP 75 min.
+    written="Written Assessment (WA) — Short-Answer Questions (SAQ), 50 minutes, open book.",
+    practical="Practical Performance (PP) — hands-on multi-agent build tasks, 75 minutes, open book.",
     note="A minimum of 75% attendance is required to be eligible for assessment and funding.",
 )
 

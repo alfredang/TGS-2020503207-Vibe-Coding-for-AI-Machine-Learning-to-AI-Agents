@@ -97,6 +97,19 @@ The slide deck, Lesson Plan and Learner Guide are distributed through the
 open **My Courses**. The **Learner Guide** carries the full detailed step-by-step for every lab and
 is your open-book reference during the assessment.
 
+Current release — **v1.0** (11 August 2026):
+
+| Artifact | File |
+|---|---|
+| Trainer Slides | `courseware/AI Vibe Coding for Multi-Agents System-v1.0.pptx` (+ `.pdf`) |
+| Lesson Plan | `courseware/LP-AI Vibe Coding for Multi-Agents System.docx` (+ `.pdf`) |
+| Learner Guide | `courseware/LG-AI Vibe Coding for Multi-Agents System.docx` (+ `.pdf`) |
+| Learner Guide (Markdown) | [`LG-AI Vibe Coding for Multi-Agents System.md`](LG-AI%20Vibe%20Coding%20for%20Multi-Agents%20System.md) |
+
+The deck is deliberately **visual** — architecture diagrams, workflow flows and tile grids. The
+per-step instructions for each lab live in the **Learner Guide** and the [`labs/`](labs/) files,
+not on the slides.
+
 > Assessment papers are confidential and are **not** published in this repository.
 
 ## Assessment

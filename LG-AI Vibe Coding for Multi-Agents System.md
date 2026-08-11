@@ -588,8 +588,8 @@ Use this checklist to revise before the assessment. Each point maps to a learnin
 
 ## Assessment Preparation
 
-- Written Assessment (WA) — Short-Answer Questions (SAQ), 1 hour, open book.
-- Practical Performance (PP) — hands-on multi-agent build tasks, 1 hour, open book.
+- Written Assessment (WA) — Short-Answer Questions (SAQ), 50 minutes, open book.
+- Practical Performance (PP) — hands-on multi-agent build tasks, 75 minutes, open book.
 - The assessment is OPEN BOOK — bring this Learner Guide and the course slides.
 - Complete every lab; the practical tasks are based directly on what you built in class.
 - A minimum of 75% attendance is required to be eligible for assessment and funding.

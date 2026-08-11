@@ -477,6 +477,12 @@ def build_wa(answers):
     para(doc, "Short-Answer Questions (Knowledge)", size=13, bold=True, color=BRAND, after=4)
     para(doc, "Answer all questions in your own words. Each question tests underpinning knowledge covered in the "
               "course slides.", size=10.5, italic=True, color=GREY, after=8)
+    # In the ANSWER KEY this intro shares page 2 with the title block, so Question 1's tall
+    # model-answer table would not fit in the remaining space and the renderer pushed it
+    # onto the next page, leaving a blank page. Break here so every model answer in the key
+    # starts on a clean page.
+    if answers:
+        page_break(doc)
     # Pagination is EXPLICIT — two questions to a page on the paper, one model answer to a
     # page in the key. Do not swap this for Word's keepNext/cantSplit: Word pushes an
     # oversized box to the next page, but Google Docs draws the border anyway and prints the
@@ -512,6 +518,12 @@ def build_pp(answers):
     para(doc, "Practical Problem", size=13, bold=True, color=BRAND, after=4)
     para(doc, "Scenario", size=11.5, bold=True, after=2)
     para(doc, SCENARIO, size=11, after=8)
+    # In the ANSWER KEY the scenario shares page 2 with the title block, so Task 1's tall
+    # model-answer table would not fit in the space left and the renderer pushed it to the
+    # next page — leaving a blank page and Task 1 apparently missing. Break here so every
+    # task in the key starts on a clean page, exactly as on the question paper.
+    if answers:
+        page_break(doc)
     # Practical tasks are long and their boxes are tall, so they get a page each — on the
     # paper AND in the key. Same rule as the WA: the page break is ours, not the renderer's.
     for i, (label, crit, prompt, cap, pts) in enumerate(PRACTICAL, 1):

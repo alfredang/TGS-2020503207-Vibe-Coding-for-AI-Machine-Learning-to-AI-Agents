@@ -614,18 +614,20 @@ cards3("Assessment",[
  (TEAL,"Practical (PP)",["Multi-agent build tasks","75 minutes","Based on the labs you did"]),
  (VIOLET,"Remember",["Open book — slides and Learner Guide",
                       "Take the Assessment digital attendance (TRAQOM)",
-                      f"Submit on the LMS: {C.LMS_URL}"])],kicker="FINAL ASSESSMENT")
+                      "Submit on the LMS: lms-tms.tertiaryinfotech.com"])],kicker="FINAL ASSESSMENT")
 flow_h("Assessment Flow",[
  "TRAQOM survey — scan the QR code on the LMS",
  "Assessment digital attendance — scan the SSG QR",
  "Sit WA (SAQ) then PP — open book",
  "Submit your answers on the LMS",
  "Sign the Assessment Summary Record"],kicker="ON ASSESSMENT DAY")
-content("Digital Attendance (Mandatory)",[
- "It is mandatory to take the AM, PM and Assessment digital attendance for WSQ-funded courses.",
- "The trainer/administrator displays the digital attendance QR code from the SSG portal.",
- "Scan the QR code with your mobile phone camera and submit your attendance.",
- "Complete the Certificate and TRAQOM survey on the LMS — both are mandatory."],kicker="TRAQOM · SSG DIGITAL ATTENDANCE")
+flow_h("Digital Attendance (Mandatory)",[
+ "The trainer displays the SSG digital attendance QR code",
+ "Scan the QR code with your mobile phone camera",
+ "Submit your Assessment digital attendance",
+ "Complete the TRAQOM survey on the LMS",
+ "Collect your Certificate on the LMS — both are mandatory"],
+ kicker="TRAQOM · SSG DIGITAL ATTENDANCE",color=AMBER)
 big_statement("Thank You!","You can now design, build and deploy collaborative multi-agent AI systems — with vibe coding as your build method.","HAPPY BUILDING",color=TEAL)
 
 OUT=os.path.join(REPO,"courseware",f"{C.SHORT_TITLE}-{C.VERSION}.pptx")

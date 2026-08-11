@@ -1,0 +1,5 @@
+{
+  "onboarding": "New joiners get a laptop on day 1 and complete security training in week 1.",
+  "deployment": "Deploys run Tuesday and Thursday at 14:00 SGT. Fridays are frozen.",
+  "oncall": "The on-call rotation changes Monday 09:00. Escalate to the lead after 30 minutes."
+}

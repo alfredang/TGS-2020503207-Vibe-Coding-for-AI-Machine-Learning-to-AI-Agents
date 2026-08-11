@@ -1,6 +1,17 @@
 # Lab 07 — Deploy the Multi-Agent System with Streamlit
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-07-deploy-the-multi-agent-system-with-streamlit/lab-07-deploy-the-multi-agent-system-with-streamlit.ipynb)
+
 **Topic:** 3 — Multi-Agent System Development with OpenAI Agents SDK  |  **Objective:** Deploy a collaborative multi-agent system as a shareable Streamlit web application
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `app.py` | The Streamlit chat app: session-state history, streamed reply, handling-specialist caption, guardrail catch and a clear-conversation sidebar. Run with `streamlit run app.py`. |
+| `team.py` | The Lab 06 agent team, copied here so the app runs standalone. `app.py` does `from team import triage_agent`. |
+| `lab-07-deploy-the-multi-agent-system-with-streamlit.ipynb` | Colab notebook wrapper. It writes `app.py` and `team.py` via `%%writefile` — Streamlit does not render inside Colab, so you run the app locally. |
 
 ## Goal
 

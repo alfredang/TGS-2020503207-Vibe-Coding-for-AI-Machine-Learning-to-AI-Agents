@@ -1,6 +1,16 @@
 # Lab 05 — First Agent with the OpenAI Agents SDK
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-05-first-agent-with-the-openai-agents-sdk/lab-05-first-agent-with-the-openai-agents-sdk.ipynb)
+
 **Topic:** 3 — Multi-Agent System Development with OpenAI Agents SDK  |  **Objective:** Design an agent with the OpenAI Agents SDK using structured outputs and function tools
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `sdk_agent.py` | The finished SDK agent: `ResearchBrief` output type, two `@function_tool` tools, a `failure_error_function` tool, and run-result inspection. Run with `python sdk_agent.py`. |
+| `lab-05-first-agent-with-the-openai-agents-sdk.ipynb` | Colab notebook wrapper — the same code, one cell per step. |
 
 ## Goal
 

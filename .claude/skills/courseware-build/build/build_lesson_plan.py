@@ -85,6 +85,10 @@ prodoc.add_version_control(doc,[
  ("1.0",C.VERSION_DATE,
   "Initial release — 2-day lesson plan for AI Vibe Coding for Multi-Agents System, aligned to the "
   "published course outline (Topics 1-5) and the 11 hands-on labs.",C.TRAINER),
+ ("1.1",C.VERSION_DATE,
+  "Labs restructured from single Markdown files into one folder per lab, each holding a runnable "
+  "Python script and a Google Colab notebook; corrected the assessment durations to the papers on "
+  "file (WA 50 minutes, PP 75 minutes) and the daily timing to 9:30am-7:00pm.",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 

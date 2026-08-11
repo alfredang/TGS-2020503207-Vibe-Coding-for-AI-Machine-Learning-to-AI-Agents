@@ -1,6 +1,19 @@
 # Lab 06 — Supervisor Routing and Sub-Agent Delegation
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-06-supervisor-routing-and-sub-agent-delegation/lab-06-supervisor-routing-and-sub-agent-delegation.ipynb)
+
 **Topic:** 3 — Multi-Agent System Development with OpenAI Agents SDK  |  **Objective:** Construct a collaborative multi-agent system with supervisor routing and handoffs
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `team.py` | The agent definitions: three specialists, the scope guardrail, the triage supervisor with `handoffs`, and the single-agent control case. Imported by `main.py` and by Lab 07. |
+| `main.py` | The runner: routes three requests, demonstrates the guardrail refusal, and compares the team against the kitchen-sink agent. Run with `python main.py`. |
+| `lab-06-supervisor-routing-and-sub-agent-delegation.ipynb` | Colab notebook wrapper — the same code, one cell per step. |
+
+> **Why `team.py` and not `agents.py`:** the OpenAI Agents SDK is imported as `from agents import ...`, so a local module named `agents.py` would shadow the installed package and break every import in the lab. The agent definitions are split from the runner so Lab 07 can `from team import triage_agent` without executing the demos.
 
 ## Goal
 

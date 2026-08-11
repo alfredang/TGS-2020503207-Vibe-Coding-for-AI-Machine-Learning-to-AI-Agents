@@ -1,6 +1,6 @@
 # AI Vibe Coding for Multi-Agents System — Learner Guide
 
-**WSQ Course Code:** TGS-2020503207  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.0 · 11 August 2026**
+**WSQ Course Code:** TGS-2020503207  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.1 · 11 August 2026**
 
 ## Contents
 
@@ -110,11 +110,18 @@ python3 -c "from google.adk.agents import Agent; print('ADK OK')"
 python3 -c "from mcp.server.fastmcp import FastMCP; print('MCP OK')"
 ```
 
+**How the labs are organised**
+
+Every lab has its own folder under labs/ in the course repository, named lab-01-…, lab-02-… and so on. Each folder contains a runnable Python script, a README with the lab instructions, and a Jupyter notebook you can open directly in Google Colab if you would rather not install anything locally.
+
+- Run locally: activate the virtual environment, ensure your .env holds the API keys, then run the script named in that lab's README (for example: python agent.py).
+- Run in Colab: open the lab's README on GitHub and click the Open in Colab badge. Put your API keys in Colab Secrets rather than typing them into a cell.
+- The two vibe coding labs (Labs 3 and 4) have no script to run — you direct an AI coding agent to write the code, so their folders hold the specification and context files instead.
+
 **Conventions used in every lab**
 
 - Commands are run from your terminal with the virtual environment activated.
 - Placeholders such as <YOUR_KEY> and /absolute/path/ are replaced with your own values.
-- Each lab has a matching file in the labs/ folder of the course repository with the complete code.
 - Model names change over time — if a model identifier is rejected, check the provider's current model list.
 - Cost control: every lab uses small prompts, but keep an eye on your provider usage dashboard.
 
@@ -142,6 +149,12 @@ Goal: Build a single agent from first principles so the loop is not a black box:
 **What you'll build**
 
 A runnable Python agent that answers questions by calling two of your own tools, printing each reasoning step and tool result so the loop is visible.   (Tools: Python 3.11+, OpenAI Python SDK, uv/pip, .env for API keys.)
+
+**Where the code lives**
+
+- Lab folder: labs/lab-01-build-your-first-tool-calling-agent/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-01-build-your-first-tool-calling-agent/lab-01-build-your-first-tool-calling-agent.ipynb
 
 **Step-by-step**
 
@@ -172,7 +185,7 @@ A runnable Python agent that answers questions by calling two of your own tools,
 
 The agent answers both parts of the question in one run, and the printed trace shows it called get_weather once and calculate once before producing the final answer.
 
-> **Note:** The complete working code for this lab is in labs/lab-01-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-01-build-your-first-tool-calling-agent/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -187,6 +200,12 @@ Goal: Give the agent memory so it stops forgetting between turns, then extract a
 
 An agent with a conversation buffer plus a persistent JSON memory store, and one reusable skill file that the agent loads only when the task calls for it.   (Tools: Python, OpenAI SDK, JSON file store, Markdown skill definition.)
 
+**Where the code lives**
+
+- Lab folder: labs/lab-02-agent-memory-and-reusable-agent-skills/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-02-agent-memory-and-reusable-agent-skills/lab-02-agent-memory-and-reusable-agent-skills.ipynb
+
 **Step-by-step**
 
 1. Add a messages list as short-term memory so the agent can resolve follow-up questions such as 'and what about tomorrow?'.
@@ -200,7 +219,7 @@ An agent with a conversation buffer plus a persistent JSON memory store, and one
 
 Tell the agent a fact, restart the process, ask about it again — the agent recalls it from memory.json. With the skill loaded, the agent follows the documented procedure instead of improvising.
 
-> **Note:** The complete working code for this lab is in labs/lab-02-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-02-agent-memory-and-reusable-agent-skills/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -229,6 +248,12 @@ Goal: Use an AI coding agent to build a working application without hand-writing
 
 A working research-assistant agent generated by a coding agent from your written specification, with an acceptance test you defined before any code existed.   (Tools: Claude Code / Gemini CLI / Cursor, Python, Git.)
 
+**Where the code lives**
+
+- Lab folder: labs/lab-03-vibe-code-an-agent-with-a-structured-workflow/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-03-vibe-code-an-agent-with-a-structured-workflow/lab-03-vibe-code-an-agent-with-a-structured-workflow.ipynb
+
 **Step-by-step**
 
 1. Install and launch your vibe coding tool in an empty project folder, then initialise Git so every AI change is reviewable as a diff.
@@ -253,7 +278,7 @@ A working research-assistant agent generated by a coding agent from your written
 
 The generated agent passes the acceptance test you wrote in SPEC.md before any code existed, and the Git history shows small reviewable commits rather than one giant unreviewed dump.
 
-> **Note:** The complete working code for this lab is in labs/lab-03-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-03-vibe-code-an-agent-with-a-structured-workflow/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -268,6 +293,12 @@ Goal: Improve reliability by controlling exactly what the coding agent sees, the
 
 A project configured with a context file and a reusable skill, demonstrably producing house-standard code without repeated instructions.   (Tools: Claude Code / Gemini CLI, Markdown, Git.)
 
+**Where the code lives**
+
+- Lab folder: labs/lab-04-context-engineering-and-a-reusable-coding-skill/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-04-context-engineering-and-a-reusable-coding-skill/lab-04-context-engineering-and-a-reusable-coding-skill.ipynb
+
 **Step-by-step**
 
 1. Take a deliberately vague prompt and note the weaknesses in what the agent produces — this is your baseline.
@@ -281,7 +312,7 @@ A project configured with a context file and a reusable skill, demonstrably prod
 
 With the context file and skill in place, the same prompt that previously produced inconsistent code now yields code matching your stated conventions, without you restating them.
 
-> **Note:** The complete working code for this lab is in labs/lab-04-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-04-context-engineering-and-a-reusable-coding-skill/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -310,6 +341,12 @@ Goal: Rebuild the hand-rolled agent from Lab 1 on the OpenAI Agents SDK and see 
 
 An SDK-based agent that calls your function tools and returns a validated Pydantic object your code can use directly.   (Tools: Python 3.11+, openai-agents SDK, Pydantic, .env.)
 
+**Where the code lives**
+
+- Lab folder: labs/lab-05-first-agent-with-the-openai-agents-sdk/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-05-first-agent-with-the-openai-agents-sdk/lab-05-first-agent-with-the-openai-agents-sdk.ipynb
+
 **Step-by-step**
 
 1. Install the Agents SDK and Pydantic into your virtual environment.
@@ -329,7 +366,7 @@ An SDK-based agent that calls your function tools and returns a validated Pydant
 
 result.final_output is an instance of your Pydantic model with correctly typed fields, and the run trace shows the expected tool calls.
 
-> **Note:** The complete working code for this lab is in labs/lab-05-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-05-first-agent-with-the-openai-agents-sdk/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -343,6 +380,12 @@ Goal: Move from one overloaded agent to a team. Build three specialists and a tr
 **What you'll build**
 
 A four-agent system — a triage supervisor plus research, coding and writing specialists — that routes each request to the correct specialist.   (Tools: Python, openai-agents SDK, Pydantic.)
+
+**Where the code lives**
+
+- Lab folder: labs/lab-06-supervisor-routing-and-sub-agent-delegation/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-06-supervisor-routing-and-sub-agent-delegation/lab-06-supervisor-routing-and-sub-agent-delegation.ipynb
 
 **Step-by-step**
 
@@ -358,7 +401,7 @@ A four-agent system — a triage supervisor plus research, coding and writing sp
 
 A research question reaches the research agent, a coding request reaches the coding agent, and an out-of-scope request is refused by the guardrail before any specialist runs.
 
-> **Note:** The complete working code for this lab is in labs/lab-06-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-06-supervisor-routing-and-sub-agent-delegation/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -372,6 +415,12 @@ Goal: Put a web interface on the agent team from Lab 6 so a non-developer can us
 **What you'll build**
 
 A running Streamlit chat application backed by your multi-agent system, with visible routing and persistent conversation history.   (Tools: Python, Streamlit, openai-agents SDK.)
+
+**Where the code lives**
+
+- Lab folder: labs/lab-07-deploy-the-multi-agent-system-with-streamlit/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-07-deploy-the-multi-agent-system-with-streamlit/lab-07-deploy-the-multi-agent-system-with-streamlit.ipynb
 
 **Step-by-step**
 
@@ -392,7 +441,7 @@ A running Streamlit chat application backed by your multi-agent system, with vis
 
 The app runs at localhost:8501, answers a multi-turn conversation with history intact, names the specialist that handled each turn, and contains no hard-coded API key.
 
-> **Note:** The complete working code for this lab is in labs/lab-07-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-07-deploy-the-multi-agent-system-with-streamlit/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -421,6 +470,12 @@ Goal: Express the same multi-agent pattern in Google's ecosystem. Building the e
 
 A Gemini-powered coordinator agent with two specialist sub-agents and working function tools.   (Tools: Python 3.11+, google-adk, Google AI Studio API key.)
 
+**Where the code lives**
+
+- Lab folder: labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk.ipynb
+
 **Step-by-step**
 
 1. Install the Google Agent Development Kit and set your Gemini API key in .env.
@@ -441,7 +496,7 @@ A Gemini-powered coordinator agent with two specialist sub-agents and working fu
 
 The coordinator routes each request to the correct sub-agent, and the tools return live results — the same behaviour as the OpenAI build, in a different SDK.
 
-> **Note:** The complete working code for this lab is in labs/lab-08-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -455,6 +510,12 @@ Goal: Give the Gemini agent team the same web interface treatment, then compare 
 **What you'll build**
 
 A deployed Streamlit application backed by the Gemini multi-agent system, plus a short written comparison of the two SDKs.   (Tools: Python, Streamlit, google-adk.)
+
+**Where the code lives**
+
+- Lab folder: labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit.ipynb
 
 **Step-by-step**
 
@@ -470,7 +531,7 @@ A deployed Streamlit application backed by the Gemini multi-agent system, plus a
 
 The Gemini app runs, routes correctly and holds conversation state, and your README records a concrete comparison of the two SDKs.
 
-> **Note:** The complete working code for this lab is in labs/lab-09-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -498,6 +559,12 @@ Goal: Write your own MCP server exposing typed tools, then connect it to a codin
 **What you'll build**
 
 A working MCP server with three typed tools, connected to and callable from your coding agent.   (Tools: Python 3.11+, FastMCP (mcp package), Claude Code or another MCP client.)
+
+**Where the code lives**
+
+- Lab folder: labs/lab-10-build-and-connect-an-mcp-server/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-10-build-and-connect-an-mcp-server/lab-10-build-and-connect-an-mcp-server.ipynb
 
 **Step-by-step**
 
@@ -534,7 +601,7 @@ A working MCP server with three typed tools, connected to and callable from your
 
 The MCP client lists all three tools, and the agent completes a task that is impossible without them, calling the tools in a sensible order.
 
-> **Note:** The complete working code for this lab is in labs/lab-10-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-10-build-and-connect-an-mcp-server/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 
@@ -548,6 +615,12 @@ Goal: Build the top of the architecture: a parent agent that delegates bounded t
 **What you'll build**
 
 A three-level hierarchical system — orchestrator, sub-agents and MCP tools — that completes a multi-part task no single agent handles well.   (Tools: Python, openai-agents SDK or google-adk, your MCP server from Lab 10.)
+
+**Where the code lives**
+
+- Lab folder: labs/lab-11-hierarchical-sub-agents-and-context-isolation/ — the runnable Python script, a README and the notebook.
+- Run it locally: activate your virtual environment, set your keys in .env, then run the script named in the lab's README.
+- Or open it in Google Colab: https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-11-hierarchical-sub-agents-and-context-isolation/lab-11-hierarchical-sub-agents-and-context-isolation.ipynb
 
 **Step-by-step**
 
@@ -564,7 +637,7 @@ A three-level hierarchical system — orchestrator, sub-agents and MCP tools —
 
 The orchestrator completes the multi-part task by delegating to at least three sub-agents; the parent's context stays small because children return conclusions only, and one deliberately failing sub-agent does not crash the run.
 
-> **Note:** The complete working code for this lab is in labs/lab-11-*.md in the course repository. Keep your API keys in .env — never commit them.
+> **Note:** The complete working code for this lab is in labs/lab-11-hierarchical-sub-agents-and-context-isolation/ in the course repository. Keep your API keys in .env — never commit them.
 
 ---
 

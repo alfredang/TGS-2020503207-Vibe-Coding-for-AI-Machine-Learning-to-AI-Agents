@@ -298,16 +298,24 @@ def trainer_slide(kicker,name,role,rows,initials,accent=BLUE):
             [[(label.upper(),11,col,True)],vruns],anchor=MSO_ANCHOR.MIDDLE,space=3)
     footer(s); return s
 
-def activity_overview(tag,title,desc,build,services,kicker):
+def activity_overview(tag,title,desc,build,services,kicker,lab_path=None):
     s=head(slide(),title,kicker,kcolor=TEAL)
     rect(s,Inches(0.85),Inches(1.85),Inches(1.7),Inches(0.5),TEAL)
     txt(s,Inches(0.85),Inches(1.9),Inches(1.7),Inches(0.4),[[(tag,16,WHITE,True)]],align=PP_ALIGN.CENTER)
-    txt(s,Inches(0.85),Inches(2.55),Inches(11.7),Inches(1.6),[[(desc,20,INK,False)]])
-    rect(s,Inches(0.85),Inches(4.3),Inches(11.7),Inches(2.0),LIGHT)
-    rect(s,Inches(0.85),Inches(4.3),Inches(0.1),Inches(2.0),BLUE)
-    txt(s,Inches(1.1),Inches(4.5),Inches(11),Inches(0.4),[[("You'll build",14,BLUE,True)]])
-    txt(s,Inches(1.1),Inches(4.9),Inches(11.2),Inches(0.6),[[(build,17,INK,True)]])
-    txt(s,Inches(1.1),Inches(5.68),Inches(11.2),Inches(0.6),[[("Tools:  ",13,GREY,True),(services,13,GREY,False)]])
+    txt(s,Inches(0.85),Inches(2.5),Inches(11.7),Inches(1.5),[[(desc,20,INK,False)]])
+    rect(s,Inches(0.85),Inches(4.1),Inches(11.7),Inches(1.75),LIGHT)
+    rect(s,Inches(0.85),Inches(4.1),Inches(0.1),Inches(1.75),BLUE)
+    txt(s,Inches(1.1),Inches(4.28),Inches(11),Inches(0.4),[[("You'll build",14,BLUE,True)]])
+    txt(s,Inches(1.1),Inches(4.66),Inches(11.2),Inches(0.6),[[(build,17,INK,True)]])
+    txt(s,Inches(1.1),Inches(5.36),Inches(11.2),Inches(0.5),[[("Tools:  ",13,GREY,True),(services,13,GREY,False)]])
+    # Where the code lives — the lab folder and its Colab notebook.
+    if lab_path:
+        rrect(s,Inches(0.85),Inches(6.0),Inches(11.7),Inches(0.62),WHITE,line=TEAL)
+        rect(s,Inches(0.85),Inches(6.0),Inches(0.1),Inches(0.62),TEAL)
+        txt(s,Inches(1.15),Inches(6.0),Inches(11.2),Inches(0.62),
+            [[("Code:  ",12,TEAL,True),(f"labs/{lab_path}/",12,INK,False),
+              ("     ·     Open in Colab from the lab README or the course repo",12,GREY,False)]],
+            anchor=MSO_ANCHOR.MIDDLE)
     footer(s); return s
 
 def lab_workflow(act):
@@ -456,8 +464,9 @@ flow_h("Assessment Flow",[
  "Sign the Assessment Summary Record"],kicker="ON ASSESSMENT DAY")
 tile_grid("Codes for the Labs",[
  ("GitHub repository","github.com/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System"),
- ("11 lab files","One Markdown file per lab, with the complete runnable code."),
- ("Clone or browse","Clone the repo, or open any lab file directly in your browser."),
+ ("One folder per lab","labs/lab-01-… to labs/lab-11-… — each with a runnable Python script and a README."),
+ ("Run it locally","python <script>.py with your virtual environment activated and your .env keys set."),
+ ("Or open in Colab","Every lab ships a notebook — click the Open in Colab badge in its README."),
  ("Learner Guide","The full detailed step-by-step for every lab — your open-book reference.")],
  kicker="LAB RESOURCES",cols=1,size=14)
 
@@ -576,7 +585,8 @@ for t in C.TOPICS:
     # per activity — overview + workflow diagram + verification (NO step-by-step slides)
     for a in acts:
         activity_overview(f"LAB {a['num']}", a["title"], a["desc"], a["build"], a["services"],
-                          kicker=f"TOPIC {t['code']} · HANDS-ON")
+                          kicker=f"TOPIC {t['code']} · HANDS-ON",
+                          lab_path=C.lab_slug(a["num"], a["title"]))
         lab_workflow(a)
         test_slide(a["title"], a["test"], kicker=f"LAB {a['num']} · VERIFY")
     # topic recap

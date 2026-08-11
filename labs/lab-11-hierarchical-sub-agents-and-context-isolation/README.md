@@ -1,6 +1,16 @@
 # Lab 11 — Hierarchical Sub-Agents and Context Isolation
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-11-hierarchical-sub-agents-and-context-isolation/lab-11-hierarchical-sub-agents-and-context-isolation.ipynb)
+
 **Topic:** 5 — MCP and Sub-Agents  |  **Objective:** Design a hierarchical sub-agent architecture with delegated, isolated context
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `hierarchy.py` | The finished three-level system: orchestrator with `as_tool()` sub-agents, the `Conclusion` output type enforcing context isolation, the MCP server attached to research only, parallel execution and graceful degradation. Run with `python hierarchy.py`. |
+| `lab-11-hierarchical-sub-agents-and-context-isolation.ipynb` | Colab notebook wrapper — the same code, one cell per step, re-creating the Lab 10 MCP server so it runs standalone. |
 
 ## Goal
 

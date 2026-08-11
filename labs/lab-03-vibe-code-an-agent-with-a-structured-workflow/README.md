@@ -1,6 +1,21 @@
 # Lab 03 — Vibe Code an Agent with a Structured Workflow
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-03-vibe-code-an-agent-with-a-structured-workflow/lab-03-vibe-code-an-agent-with-a-structured-workflow.ipynb)
+
 **Topic:** 2 — Vibe Coding for Multi-Agent Systems  |  **Objective:** Apply the structured vibe coding workflow — specify, scaffold, generate, run, verify, refine
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `SPEC.md` | A worked example specification, including the acceptance test with its negative case. **This is the artifact you write; the coding agent writes the code.** |
+| `documents/mrt.txt` | The fixture the acceptance test needs. |
+| `verify.py` | Acceptance-test runner. It does not implement the agent — it checks that the `research_agent.py` your coding agent produced passes both cases in `SPEC.md`. Run with `python verify.py`. |
+| `.gitignore` | Excludes `.env` and `__pycache__`, as the lab requires. |
+| `lab-03-vibe-code-an-agent-with-a-structured-workflow.ipynb` | Colab notebook wrapper holding the artifacts and the prompts to give your coding agent. |
+
+> **No agent implementation is shipped in this folder, by design.** This is a vibe-coding lab: the coding agent you direct writes `research_agent.py` from `SPEC.md`. `verify.py` is provided because an acceptance-test runner is genuinely useful — it is what makes "it works" checkable rather than asserted.
 
 ## Goal
 

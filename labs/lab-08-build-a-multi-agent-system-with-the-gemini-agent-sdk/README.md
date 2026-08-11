@@ -1,6 +1,16 @@
 # Lab 08 — Build a Multi-Agent System with the Gemini Agent SDK
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk.ipynb)
+
 **Topic:** 4 — Multi-Agent System Development with Gemini Agent SDK  |  **Objective:** Design collaborative agents with the Google Gemini Agent SDK (ADK)
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `gemini_team.py` | The finished ADK system: two tools, a `build_coordinator(model)` factory returning the coordinator over its two sub-agents, and the runner/session plumbing. Run with `python gemini_team.py`. |
+| `lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk.ipynb` | Colab notebook wrapper — the same code, one cell per step. |
 
 ## Goal
 

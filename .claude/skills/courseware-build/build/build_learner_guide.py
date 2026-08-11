@@ -101,11 +101,22 @@ code("python3 --version\n"
      "python3 -c \"import openai, agents, pydantic, streamlit; print('OK')\"\n"
      "python3 -c \"from google.adk.agents import Agent; print('ADK OK')\"\n"
      "python3 -c \"from mcp.server.fastmcp import FastMCP; print('MCP OK')\"")
+h3("How the labs are organised")
+p("Every lab has its own folder under labs/ in the course repository, named lab-01-…, lab-02-… and so "
+  "on. Each folder contains a runnable Python script, a README with the lab instructions, and a Jupyter "
+  "notebook you can open directly in Google Colab if you would rather not install anything locally.")
+bullets([
+ "Run locally: activate the virtual environment, ensure your .env holds the API keys, then run the "
+ "script named in that lab's README (for example: python agent.py).",
+ "Run in Colab: open the lab's README on GitHub and click the Open in Colab badge. Put your API keys "
+ "in Colab Secrets rather than typing them into a cell.",
+ "The two vibe coding labs (Labs 3 and 4) have no script to run — you direct an AI coding agent to "
+ "write the code, so their folders hold the specification and context files instead.",
+])
 h3("Conventions used in every lab")
 bullets([
  "Commands are run from your terminal with the virtual environment activated.",
  "Placeholders such as <YOUR_KEY> and /absolute/path/ are replaced with your own values.",
- "Each lab has a matching file in the labs/ folder of the course repository with the complete code.",
  "Model names change over time — if a model identifier is rejected, check the provider's current model list.",
  "Cost control: every lab uses small prompts, but keep an eye on your provider usage dashboard.",
 ])
@@ -122,12 +133,20 @@ for t in C.TOPICS:
         p(f"Goal: {a['desc']}")
         h3("What you'll build")
         p(a["build"]+f"   (Tools: {a['services']}.)")
+        slug=C.lab_slug(a["num"], a["title"])
+        h3("Where the code lives")
+        bullets([
+            f"Lab folder: labs/{slug}/ — the runnable Python script, a README and the notebook.",
+            f"Run it locally: activate your virtual environment, set your keys in .env, then run the "
+            f"script named in the lab's README.",
+            f"Or open it in Google Colab: {C.colab_url(a['num'], a['title'])}",
+        ])
         h3("Step-by-step")
         steps([(instr,cmd) for instr,cmd in a["steps"]])
         h3("Test it")
         p(a["test"])
-        note(f"The complete working code for this lab is in labs/lab-{a['num']:02d}-*.md in the course "
-             f"repository. Keep your API keys in .env — never commit them.")
+        note(f"The complete working code for this lab is in labs/{slug}/ in the course repository. "
+             f"Keep your API keys in .env — never commit them.")
         rule()
 
 h1("Course Revision")
@@ -228,6 +247,10 @@ prodoc.add_version_control(doc,[
  ("1.0",C.VERSION_DATE,
   f"Initial release — Learner Guide for AI Vibe Coding for Multi-Agents System covering all {NLABS} "
   "hands-on labs across the five topics of the published course outline.",C.TRAINER),
+ ("1.1",C.VERSION_DATE,
+  "Added a 'Where the code lives' section to every lab with its folder path and Google Colab link, "
+  "following the restructure of the labs into one folder per lab, each holding a runnable Python "
+  "script and a Colab notebook.",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 

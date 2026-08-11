@@ -1,6 +1,16 @@
 # Lab 01 — Build Your First Tool-Calling Agent
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-01-build-your-first-tool-calling-agent/lab-01-build-your-first-tool-calling-agent.ipynb)
+
 **Topic:** 1 — Modern Agent Foundations  |  **Objective:** Explain the components of a modern AI agent and implement a reasoning loop with tool calling
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `agent.py` | The finished tool-calling agent: two tools, their JSON schemas, and the reason-act-observe loop. Run with `python agent.py "<question>"`. |
+| `lab-01-build-your-first-tool-calling-agent.ipynb` | Colab notebook wrapper — the same code, one cell per step. |
 
 ## Goal
 

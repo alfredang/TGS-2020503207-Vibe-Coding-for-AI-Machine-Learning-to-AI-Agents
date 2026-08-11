@@ -15,19 +15,22 @@ sub-agents coordinated over the Model Context Protocol — using vibe coding as 
 
 ## What you will build
 
-| # | Lab | Topic | You build |
-|---|-----|-------|-----------|
-| 1 | [Build Your First Tool-Calling Agent](labs/lab-01-build-your-first-tool-calling-agent.md) | 1 | An agent loop with two of your own tools |
-| 2 | [Agent Memory and Reusable Agent Skills](labs/lab-02-agent-memory-and-reusable-agent-skills.md) | 1 | Short-term + persistent memory, and a skill file |
-| 3 | [Vibe Code an Agent with a Structured Workflow](labs/lab-03-vibe-code-an-agent-with-a-structured-workflow.md) | 2 | A research agent generated from your SPEC.md |
-| 4 | [Context Engineering and a Reusable Coding Skill](labs/lab-04-context-engineering-and-a-reusable-coding-skill.md) | 2 | A project context file and a reusable skill |
-| 5 | [First Agent with the OpenAI Agents SDK](labs/lab-05-first-agent-with-the-openai-agents-sdk.md) | 3 | An SDK agent with Pydantic structured output |
-| 6 | [Supervisor Routing and Sub-Agent Delegation](labs/lab-06-supervisor-routing-and-sub-agent-delegation.md) | 3 | A triage supervisor over three specialists |
-| 7 | [Deploy the Multi-Agent System with Streamlit](labs/lab-07-deploy-the-multi-agent-system-with-streamlit.md) | 3 | A Streamlit chat app with visible routing |
-| 8 | [Build a Multi-Agent System with the Gemini Agent SDK](labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk.md) | 4 | A Gemini coordinator with sub-agents |
-| 9 | [Deploy the Gemini Multi-Agent System with Streamlit](labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit.md) | 4 | The Gemini system deployed + an SDK comparison |
-| 10 | [Build and Connect an MCP Server](labs/lab-10-build-and-connect-an-mcp-server.md) | 5 | An MCP server with three typed tools |
-| 11 | [Hierarchical Sub-Agents and Context Isolation](labs/lab-11-hierarchical-sub-agents-and-context-isolation.md) | 5 | A three-tier orchestrator → sub-agents → MCP |
+Every lab is a folder under [`labs/`](labs/) holding a **runnable Python script**, a README with the
+instructions, and a **Colab notebook**.
+
+| # | Lab | Topic | You build | Colab |
+|---|-----|-------|-----------|-------|
+| 1 | [Build Your First Tool-Calling Agent](labs/lab-01-build-your-first-tool-calling-agent/) | 1 | An agent loop with two of your own tools | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-01-build-your-first-tool-calling-agent/lab-01-build-your-first-tool-calling-agent.ipynb) |
+| 2 | [Agent Memory and Reusable Agent Skills](labs/lab-02-agent-memory-and-reusable-agent-skills/) | 1 | Short-term + persistent memory, and a skill file | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-02-agent-memory-and-reusable-agent-skills/lab-02-agent-memory-and-reusable-agent-skills.ipynb) |
+| 3 | [Vibe Code an Agent with a Structured Workflow](labs/lab-03-vibe-code-an-agent-with-a-structured-workflow/) | 2 | A research agent generated from your SPEC.md | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-03-vibe-code-an-agent-with-a-structured-workflow/lab-03-vibe-code-an-agent-with-a-structured-workflow.ipynb) |
+| 4 | [Context Engineering and a Reusable Coding Skill](labs/lab-04-context-engineering-and-a-reusable-coding-skill/) | 2 | A project context file and a reusable skill | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-04-context-engineering-and-a-reusable-coding-skill/lab-04-context-engineering-and-a-reusable-coding-skill.ipynb) |
+| 5 | [First Agent with the OpenAI Agents SDK](labs/lab-05-first-agent-with-the-openai-agents-sdk/) | 3 | An SDK agent with Pydantic structured output | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-05-first-agent-with-the-openai-agents-sdk/lab-05-first-agent-with-the-openai-agents-sdk.ipynb) |
+| 6 | [Supervisor Routing and Sub-Agent Delegation](labs/lab-06-supervisor-routing-and-sub-agent-delegation/) | 3 | A triage supervisor over three specialists | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-06-supervisor-routing-and-sub-agent-delegation/lab-06-supervisor-routing-and-sub-agent-delegation.ipynb) |
+| 7 | [Deploy the Multi-Agent System with Streamlit](labs/lab-07-deploy-the-multi-agent-system-with-streamlit/) | 3 | A Streamlit chat app with visible routing | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-07-deploy-the-multi-agent-system-with-streamlit/lab-07-deploy-the-multi-agent-system-with-streamlit.ipynb) |
+| 8 | [Build a Multi-Agent System with the Gemini Agent SDK](labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk/) | 4 | A Gemini coordinator with sub-agents | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk/lab-08-build-a-multi-agent-system-with-the-gemini-agent-sdk.ipynb) |
+| 9 | [Deploy the Gemini Multi-Agent System with Streamlit](labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit/) | 4 | The Gemini system deployed + an SDK comparison | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit.ipynb) |
+| 10 | [Build and Connect an MCP Server](labs/lab-10-build-and-connect-an-mcp-server/) | 5 | An MCP server with three typed tools | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-10-build-and-connect-an-mcp-server/lab-10-build-and-connect-an-mcp-server.ipynb) |
+| 11 | [Hierarchical Sub-Agents and Context Isolation](labs/lab-11-hierarchical-sub-agents-and-context-isolation/) | 5 | A three-tier orchestrator → sub-agents → MCP | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-11-hierarchical-sub-agents-and-context-isolation/lab-11-hierarchical-sub-agents-and-context-isolation.ipynb) |
 
 ---
 
@@ -76,6 +79,19 @@ python3 -c "import openai, agents, pydantic, streamlit; print('OK')"
 python3 -c "from google.adk.agents import Agent; print('ADK OK')"
 python3 -c "from mcp.server.fastmcp import FastMCP; print('MCP OK')"
 ```
+
+Then run any lab from its own folder:
+
+```bash
+cd labs/lab-01-build-your-first-tool-calling-agent
+python agent.py
+```
+
+Prefer not to install anything? Click the **Open in Colab** badge on any lab above and put your API
+keys in Colab Secrets.
+
+> **Note on `mcp`:** the labs use `FastMCP` from the `mcp` 1.x line, so `requirements.txt` pins
+> `mcp[cli]>=1.9,<2`. Version 2.0 renamed that class to `MCPServer` and removed `FastMCP`.
 
 ## Prerequisites
 

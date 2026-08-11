@@ -1,6 +1,19 @@
 # Lab 04 — Context Engineering and a Reusable Coding Skill
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-04-context-engineering-and-a-reusable-coding-skill/lab-04-context-engineering-and-a-reusable-coding-skill.ipynb)
+
 **Topic:** 2 — Vibe Coding for Multi-Agent Systems  |  **Objective:** Engineer the agent's context and package a repeatable procedure as a project skill
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `CLAUDE.md` | Example project context file — stack, layout, conventions and explicit prohibitions. Copy to the root of your Lab 03 project (`GEMINI.md` for Gemini CLI). |
+| `skills/add-agent-tool.md` | Example skill file: the repeatable procedure for adding a tool, with its own quality checklist. Claude Code reads it from `.claude/skills/add-agent-tool/SKILL.md`. |
+| `lab-04-context-engineering-and-a-reusable-coding-skill.ipynb` | Colab notebook wrapper holding both artifacts and the baseline-then-compare exercise. |
+
+> **This lab ships no Python, by design.** The deliverables are the two context artifacts above. The work is configuring your coding agent and comparing what it produces with and without that context — there is nothing here for a script to do that the comparison does not do better.
 
 ## Goal
 

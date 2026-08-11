@@ -1,6 +1,17 @@
 # Lab 02 — Agent Memory and Reusable Agent Skills
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-02-agent-memory-and-reusable-agent-skills/lab-02-agent-memory-and-reusable-agent-skills.ipynb)
+
 **Topic:** 1 — Modern Agent Foundations  |  **Objective:** Implement short-term and long-term agent memory, and package a capability as a reusable skill
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `memory_agent.py` | The finished agent: conversation buffer, JSON long-term store exposed as tools, compaction, and on-demand skill loading. Run with `python memory_agent.py`. |
+| `skills/trip-briefing.md` | The reusable skill file the agent loads when a request matches its description. |
+| `lab-02-agent-memory-and-reusable-agent-skills.ipynb` | Colab notebook wrapper — the same code, one cell per step. |
 
 ## Goal
 

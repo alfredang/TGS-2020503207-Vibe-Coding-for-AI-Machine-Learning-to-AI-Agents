@@ -17,7 +17,7 @@ Admin/branding conventions carried over from the previous Master Trainer Slides.
 TITLE        = "AI Vibe Coding for Multi-Agents System"
 SHORT_TITLE  = "AI Vibe Coding for Multi-Agents System"   # used in output filenames
 COURSE_CODE  = "TGS-2020503207"
-VERSION      = "v1.0"
+VERSION      = "v1.1"
 VERSION_DATE = "11 August 2026"
 ORG          = "Tertiary Infotech Academy Pte Ltd"
 UEN          = "UEN: 201200696W"
@@ -36,7 +36,25 @@ TSC_ABILITIES = [
 
 COURSE_URL   = "https://www.tertiarycourses.com.sg/wsq-ai-vibe-coding-for-multi-agents-system.html"
 REPO_URL     = "https://github.com/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System"
+REPO_SLUG    = "tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System"
 LMS_URL      = "https://lms-tms.tertiaryinfotech.com"
+
+# Each lab lives in labs/<slug>/ with a runnable .py, a Colab .ipynb and a README.
+# The "Open in Colab" link for a lab is derived here so the deck, the Learner Guide
+# and the lab READMEs can never drift apart.
+def lab_slug(num, title):
+    """labs/ folder name for a lab: lab-NN-kebab-title (matches the labs/ tree)."""
+    kebab = "".join(c.lower() if c.isalnum() else "-" for c in title)
+    while "--" in kebab:
+        kebab = kebab.replace("--", "-")
+    return f"lab-{num:02d}-{kebab.strip('-')}"
+
+def colab_url(num, title):
+    slug = lab_slug(num, title)
+    return f"https://colab.research.google.com/github/{REPO_SLUG}/blob/main/labs/{slug}/{slug}.ipynb"
+
+def lab_dir_url(num, title):
+    return f"{REPO_URL}/tree/main/labs/{lab_slug(num, title)}"
 
 # ------------------------------------------------------------------ outcomes
 # Aligned to the published multi-agent course outline (Topics 1-5).

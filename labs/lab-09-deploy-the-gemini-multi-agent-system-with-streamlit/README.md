@@ -1,6 +1,18 @@
 # Lab 09 — Deploy the Gemini Multi-Agent System with Streamlit
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit/lab-09-deploy-the-gemini-multi-agent-system-with-streamlit.ipynb)
+
 **Topic:** 4 — Multi-Agent System Development with Gemini Agent SDK  |  **Objective:** Deploy a Gemini-based collaborative multi-agent system with Streamlit
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `gemini_app.py` | The Streamlit app: ADK runner and session id cached in `st.session_state`, streamed reply, responding sub-agent shown per turn, model switcher and latency metric. Run with `streamlit run gemini_app.py --server.port 8502`. |
+| `gemini_team.py` | The Lab 08 Gemini team, copied here so the app runs standalone. Provides `build_coordinator`, `APP_NAME` and `USER_ID`. |
+| `COMPARISON.md` | The step-7 SDK comparison template. Fill in every blank from your own runs and keep it as evidence for the practical assessment. |
+| `lab-09-deploy-the-gemini-multi-agent-system-with-streamlit.ipynb` | Colab notebook wrapper. It writes the app files via `%%writefile` — Streamlit does not render inside Colab, so you run the app locally. |
 
 ## Goal
 

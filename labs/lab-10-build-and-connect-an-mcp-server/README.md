@@ -1,6 +1,18 @@
 # Lab 10 — Build and Connect an MCP Server
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tertiarycourses/TGS-2020503207-AI-Vibe-Coding-for-Multi-Agents-System/blob/main/labs/lab-10-build-and-connect-an-mcp-server/lab-10-build-and-connect-an-mcp-server.ipynb)
+
 **Topic:** 5 — MCP and Sub-Agents  |  **Objective:** Orchestrate tools through the Model Context Protocol
+
+## Files in this lab
+
+| File | What it is |
+|---|---|
+| `README.md` | This lab guide. |
+| `server.py` | The MCP server: three typed `@mcp.tool()` tools over stdio. Run with `python server.py`, or `mcp dev server.py` for the inspector. |
+| `team_notes.json` | The local data file `search_team_notes` reads. |
+| `client_demo.py` | A minimal MCP client that spawns the server, lists its tools and calls each one — the same handshake Claude Code performs, so you can verify the server without an agent. Run with `python client_demo.py`. |
+| `lab-10-build-and-connect-an-mcp-server.ipynb` | Colab notebook wrapper — writes the server, then verifies it with the client demo. |
 
 ## Goal
 

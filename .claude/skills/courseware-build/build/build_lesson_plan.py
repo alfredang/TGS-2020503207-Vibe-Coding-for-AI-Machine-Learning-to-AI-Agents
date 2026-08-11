@@ -101,7 +101,9 @@ info=[("Course Title",C.TITLE),("WSQ Course Reference",C.COURSE_CODE),
       ("Skills Framework",f"{C.TSC_TITLE}  ({C.TSC_CODE})"),
       ("Duration",f"{C.DAYS} days · 8 instructional hours per day (16 hours), plus assessment "
                   "(WA 50 minutes + PP 75 minutes)"),
-      ("Daily Timing","9:30 am – 7:00 pm (8 instructional hours, plus a 1-hour lunch and two 15-minute tea breaks)"),
+      ("Daily Timing","9:30 am – 7:00 pm — 8 instructional hours per day. Breaks are additional and are "
+                     "not counted as instructional time: a 1-hour lunch and two 15-minute tea breaks "
+                     "(570 minutes elapsed, 480 instructional)."),
       ("Mode","Instructor-led, hands-on multi-agent development labs in Python"),
       ("Trainer",C.TRAINER)]
 t=doc.add_table(rows=0,cols=2); t.style="Table Grid"
@@ -163,8 +165,13 @@ for day,(theme,rows) in SCHEDULE.items():
     for row in tbl.rows:
         row.cells[0].width=Inches(1.15); row.cells[1].width=Inches(0.9); row.cells[2].width=Inches(4.75)
     p=doc.add_paragraph(); r=p.add_run(f"Total instructional time: {training} minutes ({training//60} hours), "
-                                       "excluding the 1-hour lunch and two 15-minute tea breaks.")
+                                       "excluding the 1-hour lunch and two 15-minute tea breaks "
+                                       "(9:30 am – 7:00 pm = 570 minutes elapsed).")
     r.italic=True; r.font.size=Pt(9.5); r.font.color.rgb=GREY
+    # 8 INSTRUCTIONAL hours per day is what the course is funded for (16 training hours in total).
+    # Breaks are NOT instructional time, so a 9:30-18:30 day cannot deliver 480 minutes: it yields
+    # 540 elapsed - 60 lunch - 30 tea = 450. The teaching day therefore runs to 7:00 pm so the
+    # funded hours are genuinely delivered. Verified by this assertion on every build.
     assert training==480, f"Day {day} instructional minutes = {training}, expected 480"
 
 H("Lab Reference (aligned to the course outline)",1)
